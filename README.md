@@ -7,7 +7,7 @@
 Open a terminal, navigate to your home directory and type (assuming that you have git installed):
 
 ```
-git clone --recurse-submodules https://github.com/GertKl/NRE_with_Slurm.git
+git clone --recurse-submodules https://github.com/GertKl/ALPs_with_SWYFT.git
 cd NRE_with_Slurm/swyft
 ```
 
