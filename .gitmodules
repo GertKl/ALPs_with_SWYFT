@@ -1,3 +1,6 @@
 [submodule "swyft"]
 	path = swyft
 	url = https://github.com/GertKl/swyft.git
+[submodule "analysis_scripts/ALP_sim"]
+	path = analysis_scripts/ALP_sim
+	url = https://github.com/GertKl/ALP_sim.git
