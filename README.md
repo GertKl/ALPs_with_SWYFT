@@ -8,7 +8,7 @@ Open a terminal, navigate to your home directory and type (assuming that you hav
 
 ```
 git clone --recurse-submodules https://github.com/GertKl/ALPs_with_SWYFT.git
-cd NRE_with_Slurm/swyft
+cd ALPs_with_SWYFT/swyft
 ```
 
 Make sure to include the "recurse-submodules" option in the first line. The SWYFT code is imported as a submodule, which is necessary in order to include my changes to the package in the installation. The third line is necessary to make sure that the submodule isn't left hanging in a detached HEAD state. 
