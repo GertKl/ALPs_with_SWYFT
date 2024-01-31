@@ -7,4 +7,11 @@
 *.pickle*
 *_files/*
 
-
+*/.ipynb_checkpoints/
+*_store/
+*.sync/
+*/wandb/
+*/lightning_logs/
+*/__pycache__/
+*.pickle
+*_files/
