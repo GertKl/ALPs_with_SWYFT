@@ -1,0 +1,40 @@
+GPU available: False, used: False
+TPU available: False, using: 0 TPU cores
+IPU available: False, using: 0 IPUs
+HPU available: False, using: 0 HPUs
+/home/gert/anaconda3/envs/swyft4-dev/lib/python3.9/site-packages/pytorch_lightning/loops/utilities.py:94: PossibleUserWarning: `max_epochs` was not set. Setting it to 1000 epochs. To train without an epoch limit, set `max_epochs=-1`.
+  rank_zero_warn(
+The following callbacks returned in `LightningModule.configure_callbacks` will override existing callbacks passed to Trainer: ModelCheckpoint
+  | Name      | Type                     | Params
+-------------------------------------------------------
+0 | norm      | OnlineStandardizingLayer | 0
+1 | logratios | LogRatioEstimator_1dim   | 26.9 K
+-------------------------------------------------------
+26.9 K    Trainable params
+0         Non-trainable params
+26.9 K    Total params
+0.216     Total estimated model params size (MB)
+Reloading best model: ./lightning_logs/h8tb6gwi/checkpoints/epoch=0-step=2500.ckpt
+
+Generating new null-hypothesis... done.
+/home/gert/anaconda3/envs/swyft4-dev/lib/python3.9/site-packages/pytorch_lightning/loggers/wandb.py:395: UserWarning: There is a wandb run already in progress and newly created instances of `WandbLogger` will reuse this run. If this is not desired, call `wandb.finish()` before instantiating `WandbLogger`.
+  rank_zero_warn(
+GPU available: False, used: False
+TPU available: False, using: 0 TPU cores
+IPU available: False, using: 0 IPUs
+HPU available: False, using: 0 HPUs
+/home/gert/anaconda3/envs/swyft4-dev/lib/python3.9/site-packages/pytorch_lightning/loops/utilities.py:94: PossibleUserWarning: `max_epochs` was not set. Setting it to 1000 epochs. To train without an epoch limit, set `max_epochs=-1`.
+  rank_zero_warn(
+The following callbacks returned in `LightningModule.configure_callbacks` will override existing callbacks passed to Trainer: ModelCheckpoint
+/home/gert/anaconda3/envs/swyft4-dev/lib/python3.9/site-packages/pytorch_lightning/callbacks/model_checkpoint.py:613: UserWarning: Checkpoint directory ./lightning_logs/h8tb6gwi/checkpoints exists and is not empty.
+  rank_zero_warn(f"Checkpoint directory {dirpath} exists and is not empty.")
+  | Name      | Type                     | Params
+-------------------------------------------------------
+0 | norm      | OnlineStandardizingLayer | 0
+1 | logratios | LogRatioEstimator_1dim   | 26.9 K
+-------------------------------------------------------
+26.9 K    Trainable params
+0         Non-trainable params
+26.9 K    Total params
+0.216     Total estimated model params size (MB)
+Reloading best model: ./lightning_logs/h8tb6gwi/checkpoints/epoch=4-step=12500.ckpt
