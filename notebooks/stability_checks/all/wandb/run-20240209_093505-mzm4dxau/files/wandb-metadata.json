@@ -1,0 +1,79 @@
+{
+    "os": "Linux-5.4.0-171-generic-x86_64-with-glibc2.31",
+    "python": "3.9.7",
+    "heartbeatAt": "2024-02-09T08:35:06.205212",
+    "startedAt": "2024-02-09T08:35:05.152430",
+    "docker": null,
+    "cuda": null,
+    "args": [],
+    "state": "running",
+    "program": "notebooks/stability_checks/all/all_v2_larger_bounds.ipynb",
+    "codePathLocal": null,
+    "root": "/home/gert/ALPs_with_SWYFT",
+    "git": {
+        "remote": "https://github.com/GertKl/ALPs_with_SWYFT.git",
+        "commit": "822646a192660deae5cfb3bac5ece5eb59888dcb"
+    },
+    "email": "gertwkl@gmail.com",
+    "host": "gert-HP-EliteBook-850-G6",
+    "username": "gert",
+    "executable": "/home/gert/anaconda3/envs/swyft4-dev/bin/python",
+    "cpu_count": 4,
+    "cpu_count_logical": 8,
+    "cpu_freq": {
+        "current": 3.2998750000000006,
+        "min": 400.0,
+        "max": 3900.0
+    },
+    "cpu_freq_per_core": [
+        {
+            "current": 3.299,
+            "min": 400.0,
+            "max": 3900.0
+        },
+        {
+            "current": 3.3,
+            "min": 400.0,
+            "max": 3900.0
+        },
+        {
+            "current": 3.3,
+            "min": 400.0,
+            "max": 3900.0
+        },
+        {
+            "current": 3.3,
+            "min": 400.0,
+            "max": 3900.0
+        },
+        {
+            "current": 3.3,
+            "min": 400.0,
+            "max": 3900.0
+        },
+        {
+            "current": 3.3,
+            "min": 400.0,
+            "max": 3900.0
+        },
+        {
+            "current": 3.3,
+            "min": 400.0,
+            "max": 3900.0
+        },
+        {
+            "current": 3.3,
+            "min": 400.0,
+            "max": 3900.0
+        }
+    ],
+    "disk": {
+        "/": {
+            "total": 329.6885452270508,
+            "used": 275.2598419189453
+        }
+    },
+    "memory": {
+        "total": 15.434478759765625
+    }
+}
