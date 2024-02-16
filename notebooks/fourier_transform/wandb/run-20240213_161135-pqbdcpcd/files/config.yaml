@@ -21,6 +21,7 @@ _wandb:
       - 55
       - 103
       3:
+      - 2
       - 7
       - 23
       4: 3.9.7
@@ -33,3 +34,19 @@ _wandb:
     - 1: trainer/global_step
       6:
       - 3
+    - 1: lr-AdamW
+      5: 1
+      6:
+      - 1
+    - 1: train_loss
+      5: 1
+      6:
+      - 1
+    - 1: epoch
+      5: 1
+      6:
+      - 1
+    - 1: val_loss
+      5: 1
+      6:
+      - 1

@@ -17,3 +17,5 @@ The following callbacks returned in `LightningModule.configure_callbacks` will o
 17.6 K    Trainable params
 0         Non-trainable params
 17.6 K    Total params
+0.141     Total estimated model params size (MB)
+Reloading best model: ./lightning_logs/pqbdcpcd/checkpoints/epoch=11-step=120.ckpt

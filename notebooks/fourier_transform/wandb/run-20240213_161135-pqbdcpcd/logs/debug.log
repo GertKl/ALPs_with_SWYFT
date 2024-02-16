@@ -37,3 +37,16 @@ config: {}
 2024-02-13 16:11:47,679 INFO    MainThread:151221 [jupyter.py:save_ipynb():373] not saving jupyter notebook
 2024-02-13 16:11:47,680 INFO    MainThread:151221 [wandb_init.py:_pause_backend():437] pausing backend
 2024-02-13 16:11:47,705 INFO    MainThread:151221 [wandb_init.py:_resume_backend():442] resuming backend
+2024-02-13 16:29:46,883 INFO    MainThread:151221 [jupyter.py:save_ipynb():373] not saving jupyter notebook
+2024-02-13 16:29:46,892 INFO    MainThread:151221 [wandb_init.py:_pause_backend():437] pausing backend
+2024-02-13 16:29:46,906 INFO    MainThread:151221 [wandb_init.py:_resume_backend():442] resuming backend
+2024-02-13 16:29:46,912 INFO    MainThread:151221 [wandb_run.py:_finish():1962] finishing run alps_with_swyft/lightning_logs/pqbdcpcd
+2024-02-13 16:29:46,913 INFO    MainThread:151221 [jupyter.py:save_history():445] not saving jupyter history
+2024-02-13 16:29:46,913 INFO    MainThread:151221 [jupyter.py:save_ipynb():373] not saving jupyter notebook
+2024-02-13 16:29:46,913 INFO    MainThread:151221 [wandb_init.py:_jupyter_teardown():454] cleaning up jupyter logic
+2024-02-13 16:29:46,913 INFO    MainThread:151221 [wandb_run.py:_atexit_cleanup():2202] got exitcode: 0
+2024-02-13 16:29:46,913 INFO    MainThread:151221 [wandb_run.py:_restore():2185] restore
+2024-02-13 16:29:46,914 INFO    MainThread:151221 [wandb_run.py:_restore():2191] restore done
+2024-02-13 16:29:54,392 INFO    MainThread:151221 [wandb_run.py:_footer_history_summary_info():3857] rendering history
+2024-02-13 16:29:54,394 INFO    MainThread:151221 [wandb_run.py:_footer_history_summary_info():3889] rendering summary
+2024-02-13 16:29:54,410 INFO    MainThread:151221 [wandb_run.py:_footer_sync_info():3816] logging synced files
