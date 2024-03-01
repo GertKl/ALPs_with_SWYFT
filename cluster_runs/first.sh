@@ -13,7 +13,7 @@
 #---------- Environment configuration ----------------------------------------------------------
 #-----------------------------------------------------------------------------------------------
 
-cluster=1				# Whether to run on slurm cluster. Runs locally if 0. 
+on_cluster=1				# Whether to run on slurm cluster. Runs locally if 0. 
 
 conda_env=swyft4-dev			# Name of conda-env. with the necessary installations
 
@@ -50,7 +50,7 @@ account=ec12			# Mostly redundant, should always be ec12
 # -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  - 
 # Physical model configuration 
 
-update_config=1		# If 0, loads configuration from previous runs, unless this is
+update_config=0		# If 0, loads configuration from previous runs, unless this is
 				# the first run. 
 
 
@@ -96,24 +96,24 @@ POI_indices="     0,3,7      " # Which parameters to analyze for
 # 	   Simulated | Observed | Null-hyp.| is log? | name         |  unit 	
 #      -------------------------------------------------------------------
 			
-param1="     10      |    10    |    10    |    0    |    m        |     nev     " # mass m in neV
-param2=" [0.2 : 0.8] |    10    |    10    |    0    |    g        | 1e-11GeV^-1 " # coupling constant g in 10^(-11) /GeV
-param3="     10      |    10    |    10    |    0    | Amplitude   |             " # Amplitude of power law, in "TeV-1 cm-2 s-1" 
-param4="     10      |    10    |    10    |    0    | index       |             " # Spectral index of the PWL 
-param5="     10      |    10    |    10    |    0    | E0          |             " # Reference energy (?) E0, In GeV
-param6="     10      |    10    |    10    |    0    | Ecut        |             " # Cut-off energy Ecut, in GeV 
-param7="     10      |    10    |    10    |    0    | rms_B       |             " # rms of B field, default = 10.
-param8="     10      |    10    |    10    |    0    | e_norm      |             " # normalization of electron density, default = 39.
-param9="     10      |    10    |    10    |    0    | e_norm_2    |             " # second normalization of electron density, see Churazov et al. 2003, Eq. 4, default = 4.05
-param10="    10      |    10    |    10    |    0    | cluster_ext |     kpc     " # extension of the cluster, default = 500.
-param11="    10      |    10    |    10    |    0    | e_dens_1    |             " # electron density parameter, see Churazov et al. 2003, Eq. 4, default = 80.
-param12="    10      |    10    |    10    |    0    | e_dens_2    |             " # electron density parameter, see Churazov et al. 2003, Eq. 4, default = 200.
-param13="    10      |    10    |    10    |    0    | e_dens_3    |             " # electron density parameter, see Churazov et al. 2003, Eq. 4, default = 1.2
-param14="    10      |    10    |    10    |    0    | e_dens_4    |             " # electron density parameter, see Churazov et al. 2003, Eq. 4, default = 0.58
-param15="    10      |    10    |    10    |    0    | B_scaling   |             " # scaling of B-field with electron denstiy, default = 0.5
-param16="    10      |    10    |    10    |    0    | Max_turb    |             " # maximum turbulence scale in kpc^-1, taken from A2199 cool-core cluster, see Vacca et al. 2012, default = 0.18
-param17="    10      |    10    |    10    |    0    | min_turb    |             " # minimum turbulence scale, taken from A2199 cool-core cluster, see Vacca et al. 2012, default = 9. 
-param18="    10      |    10    |    10    |    0    | turb_index  |             " # turbulence spectral index, taken from A2199 cool-core cluster, see Vacca et al. 2012, default = -2.80 
+param1="     10      |    10    |   10    |    0    |    m        |     nev     " # mass m in neV
+param2=" [0.2 : 0.8] |    10    |  0.4    |    0    |    g        | 1e-11GeV^-1 " # coupling constant g in 10^(-11) /GeV
+param3="     1.54e-9 |    10    | 1.54e-9 |    0    | Amplitude   |             " # Amplitude of power law, in "TeV-1 cm-2 s-1" 
+param4="     2.11    |    10    |  2.11   |    0    | index       |             " # Spectral index of the PWL 
+param5="     300     |    10    |  300    |    0    | E0          |             " # Reference energy (?) E0, In GeV
+param6="     560     |    10    |  560    |    0    | Ecut        |             " # Cut-off energy Ecut, in GeV 
+param7="     25      |    10    |   25    |    0    | rms_B       |             " # rms of B field, default = 10.
+param8="     39      |    10    |   39    |    0    | e_norm      |             " # normalization of electron density, default = 39.
+param9="     4.05    |    10    |  4.05   |    0    | e_norm_2    |             " # second normalization of electron density, see Churazov et al. 2003, Eq. 4, default = 4.05
+param10="    500     |    10    |  500    |    0    | cluster_ext |     kpc     " # extension of the cluster, default = 500.
+param11="    80      |    10    |   80    |    0    | e_dens_1    |             " # electron density parameter, see Churazov et al. 2003, Eq. 4, default = 80.
+param12="    280     |    10    |  280    |    0    | e_dens_2    |             " # electron density parameter, see Churazov et al. 2003, Eq. 4, default = 200.
+param13="    1.2     |    10    |  1.2    |    0    | e_dens_3    |             " # electron density parameter, see Churazov et al. 2003, Eq. 4, default = 1.2
+param14="    0.58    |    10    |  0.58   |    0    | e_dens_4    |             " # electron density parameter, see Churazov et al. 2003, Eq. 4, default = 0.58
+param15="    0.5     |    10    |  0.5    |    0    | B_scaling   |             " # scaling of B-field with electron denstiy, default = 0.5
+param16="    0.18    |    10    | 0.18    |    0    | Max_turb    |             " # maximum turbulence scale in kpc^-1, taken from A2199 cool-core cluster, see Vacca et al. 2012, default = 0.18
+param17="    9       |    10    |    9    |    0    | min_turb    |             " # minimum turbulence scale, taken from A2199 cool-core cluster, see Vacca et al. 2012, default = 9. 
+param18="    -2.80   |    10    | -2.8    |    0    | turb_index  |             " # turbulence spectral index, taken from A2199 cool-core cluster, see Vacca et al. 2012, default = -2.80 
 
 
 
@@ -125,11 +125,11 @@ param18="    10      |    10    |    10    |    0    | turb_index  |            
 # -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  - 
 # Simulation parameters	
 
-import_old_sims=1
+use_old_sims=1 # $FOML3/cluster_runs/storee/storicist
+save_old_sims=0
 simulate=1
 
 n_sim=100 				# Number of simulations
-
 
 partition_sim=normal			# Usually "normal", since simulation doesn't use GPUs. 
 devel_sim=1				# if yes, jobs run sooner, but max walltime is 2h. 
@@ -190,10 +190,31 @@ color_truth="        1,0,1           " # Color to indicate the observed value wi
 results_parent_dir=$PWD/analysis_results
 results_dir=$results_parent_dir/$run_name
 
+# Some helpful lists for the pipeline to know. 
+stopping_states="\
+FAILED ,\
+CANCELLED ,\
+CANCELLED+ ,\
+COMPLETED ,\
+TIMEOUT ,\
+PREEMPTED ,\
+NODE_FAIL ,\
+OUT_OF_MEMORY \
+"
+
+running_states="\
+PENDING ,\
+RUNNING ,\
+SUSPENDED \
+"
+
+
+
+
 # Running analysis
 $analysis_scripts_location/run_swyft_analysis.sh \
 "\
-cluster=$cluster=int ;\
+on_cluster=$on_cluster=int ;\
 start_dir=$PWD ;\
 results_parent_dir=$results_parent_dir ;\
 results_dir=$results_dir ;\
@@ -219,8 +240,9 @@ floor_obs=$floor_obs=float ;\
 IRF_file=$IRF_file ;\
 model_params=$param1,$param2,$param3,$param4,$param5,$param6,$param7,$param8,$param9,$param10,\
 $param11,$param12,$param13,$param14,$param15,$param16,$param17,$param18 ;\
+use_old_sims=$use_old_sims ;\
+save_old_sims=$save_old_sims=int ;\
 simulate=$simulate=int ;\
-sim_from_scratch=$sim_from_scratch=int ;\
 n_sim=$n_sim=int ;\
 partition_sim=$partition_sim ;\
 devel_sim=$devel_sim=int ;\
@@ -250,6 +272,8 @@ sample_batch_size_2d=$sample_batch_size_2d=int ;\
 plot_1d=$plot_1d=int ;\
 plot_corner=$plot_corner=int ;\
 color_truth=$color_truth=float ;\
+running_states=$running_states ;\
+stopping_states=$stopping_states ;\
 "
 
 

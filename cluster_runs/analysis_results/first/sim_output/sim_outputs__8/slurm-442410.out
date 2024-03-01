@@ -1,0 +1,25 @@
+Starting job 442410 on c1-28 at Fri Mar 1 22:23:41 CET 2024
+
+
+Task and CPU usage stats:
+JobID           JobName  AllocCPUS   NTasks     MinCPU MinCPUTask     AveCPU    Elapsed ExitCode 
+------------ ---------- ---------- -------- ---------- ---------- ---------- ---------- -------- 
+442410       ALP_simul+          1                                             00:00:18      0:0 
+442410.batch      batch          1        1   00:00:05          0   00:00:05   00:00:18      0:0 
+442410.exte+     extern          1        1   00:00:00          0   00:00:00   00:00:18      0:0 
+
+Memory usage stats:
+JobID            MaxRSS MaxRSSTask     AveRSS MaxPages   MaxPagesTask   AvePages 
+------------ ---------- ---------- ---------- -------- -------------- ---------- 
+442410                                                                           
+442410.batch     23368K          0     23368K        0              0          0 
+442410.exte+          0          0          0        0              0          0 
+
+Disk usage stats:
+JobID         MaxDiskRead MaxDiskReadTask    AveDiskRead MaxDiskWrite MaxDiskWriteTask   AveDiskWrite 
+------------ ------------ --------------- -------------- ------------ ---------------- -------------- 
+442410                                                                                                
+442410.batch            0               0              0        0.00M                0          0.00M 
+442410.exte+        0.01M               0          0.01M        0.00M                0          0.00M 
+
+Job 442410 completed at Fri Mar 1 22:23:58 CET 2024
