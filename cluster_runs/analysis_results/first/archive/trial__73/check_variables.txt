@@ -1,0 +1,63 @@
+cluster : 1
+start_dir : /fp/homes01/u01/ec-gertwk/ALPs_with_SWYFT/cluster_runs
+results_parent_dir : /fp/homes01/u01/ec-gertwk/ALPs_with_SWYFT/cluster_runs/analysis_results
+results_dir : /fp/homes01/u01/ec-gertwk/ALPs_with_SWYFT/cluster_runs/analysis_results/first
+conda_env : swyft4-dev
+parent_directory : /fp/homes01/u01/ec-gertwk/ALPs_with_SWYFT
+scripts_dir : /fp/homes01/u01/ec-gertwk/ALPs_with_SWYFT/analysis_scripts/ALP_sim
+safe_directory : /fp/homes01/u01/ec-gertwk/ALPs_with_SWYFT/cluster_runs/results
+run_name : first
+gpus : 1
+dirstore : 0
+account : ec12
+update_model : 1
+POI_indices : [0, 3, 7]
+model : 
+nbins : 150
+nbins_etrue : 450
+emin : 60.0
+emax : 3000.0
+livetime : 300.0
+ALP_seed : 0
+floor_exp : -1.15
+floor_obs : -1.15
+IRF_file : /fp/homes01/u01/ec-gertwk/ALPs_with_SWYFT/IRFs/CTA/Prod5-North-20deg-AverageAz-4LSTs09MSTs.180000s-v0.1.fits
+update_params : 1
+update_obs : 1
+config_pois : 1
+model_params : [['10', '10', '10', '0', 'm', 'nev'], ['[0.2:0.8]', '10', '10', '0', 'g', '1e-11GeV^-1'], ['10', '10', '10', '0', 'Amplitude', ''], ['10', '10', '10', '0', 'index', ''], ['10', '10', '10', '0', 'E0', ''], ['10', '10', '10', '0', 'Ecut', ''], ['10', '10', '10', '0', 'rms_B', ''], ['10', '10', '10', '0', 'e_norm', ''], ['10', '10', '10', '0', 'e_norm_2', ''], ['10', '10', '10', '0', 'cluster_ext', 'kpc'], ['10', '10', '10', '0', 'e_dens_1', ''], ['10', '10', '10', '0', 'e_dens_2', ''], ['10', '10', '10', '0', 'e_dens_3', ''], ['10', '10', '10', '0', 'e_dens_4', ''], ['10', '10', '10', '0', 'B_scaling', ''], ['10', '10', '10', '0', 'Max_turb', ''], ['10', '10', '10', '0', 'min_turb', ''], ['10', '10', '10', '0', 'turb_index', '']]
+simulate : 1
+sim_from_scratch : 0
+n_sim : 100
+partition_sim : normal
+devel_sim : 1
+n_jobs_sim : 2
+max_memory_sim : 5
+max_time_sim : 00-00:10:00
+train : 1
+train_1d : 1
+train_2d : 0
+train_from_scratch_1D : 0
+train_from_scratch_2D : 0
+train_batch_size_1d : 10
+train_batch_size_2d : 10
+learning_rate_1d : 0.001
+learning_rate_2d : 0.001
+partition_train : accel
+devel_train : 1
+max_memory_train : 40
+max_time_train : 00-00:10:00
+infer : 1
+infer_1d : 1
+infer_2d : 0
+n_sample_1d : 100000
+n_sample_2d : 100000
+sample_batch_size_1d : 10
+sample_batch_size_2d : 10
+plot_1d : 1
+plot_corner : 0
+color_truth : [1.0, 0.0, 1.0]
+sim_params : [10, [0.2, 0.8], 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10]
+obs_params : [10.0, 10.0, 10.0, 10.0, 10.0, 10.0, 10.0, 10.0, 10.0, 10.0, 10.0, 10.0, 10.0, 10.0, 10.0, 10.0, 10.0, 10.0]
+bounds : [[0.2, 0.8]]
+A : <ALP_quick_sim.ALP_sim object at 0x1502d5479fd0>
