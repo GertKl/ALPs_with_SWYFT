@@ -31,13 +31,7 @@ safe_directory=$FOML3/cluster_runs/results
 # -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  - 
 # Technical
 
-run_name="first" 		# Name of the series (of runs), identifying the results folder
-
-
-
-
-gpus=1				# Request GPU from cluster, yes or no
-
+run_name="sim_and_train" 		# Name of the series (of runs), identifying the results folder
 
 
 dirstore="0"			# If 1, operates with simulations on disk during simulation and,
@@ -50,7 +44,7 @@ account=ec12			# Mostly redundant, should always be ec12
 # -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  - 
 # Physical model configuration 
 
-update_config=0		# If 0, loads configuration from previous runs, unless this is
+update_config=1		# If 0, loads configuration from previous runs, unless this is
 				# the first run. 
 
 
@@ -87,17 +81,17 @@ IRF_file="$FOML3/IRFs/CTA/Prod5-North-20deg-AverageAz-4LSTs09MSTs.180000s-v0.1.f
 
 # Model parameter configuration
 
-POI_indices="     0,3,7      " # Which parameters to analyze for 
+POI_indices="     0          " # Which parameters to analyze for 
 				# (e.g. "0:1:3" for 3 parameters, excluding parameter of index 2;
-				# counting those parameters where the value isn't fixed)
+				# NOTE: counting ONLY those parameters where the value isn't fixed!)
 
 
 
 # 	   Simulated | Observed | Null-hyp.| is log? | name         |  unit 	
 #      -------------------------------------------------------------------
 			
-param1="     10      |    10    |   10    |    0    |    m        |     nev     " # mass m in neV
-param2=" [0.2 : 0.8] |    10    |  0.4    |    0    |    g        | 1e-11GeV^-1 " # coupling constant g in 10^(-11) /GeV
+param1="     10      |    10    |    0    |    0    |    m        |     nev     " # mass m in neV
+param2=" [0.2 : 0.8] |    10    |    0    |    0    |    g        | 1e-11GeV^-1 " # coupling constant g in 10^(-11) /GeV
 param3="     1.54e-9 |    10    | 1.54e-9 |    0    | Amplitude   |             " # Amplitude of power law, in "TeV-1 cm-2 s-1" 
 param4="     2.11    |    10    |  2.11   |    0    | index       |             " # Spectral index of the PWL 
 param5="     300     |    10    |  300    |    0    | E0          |             " # Reference energy (?) E0, In GeV
@@ -127,24 +121,27 @@ param18="    -2.80   |    10    | -2.8    |    0    | turb_index  |             
 
 use_old_sims=1 # $FOML3/cluster_runs/storee/storicist
 save_old_sims=0
-simulate=1
+simulate=0
 
-n_sim=100 				# Number of simulations
+n_sim=100000 				# Number of simulations
 
 partition_sim=normal			# Usually "normal", since simulation doesn't use GPUs. 
-devel_sim=1				# if yes, jobs run sooner, but max walltime is 2h. 
+devel_sim=0				# if yes, jobs run sooner, but max walltime is 2h. 
 
-n_jobs_sim=2				# Number of jobs to share simulation over
+n_jobs_sim=768				# Number of jobs to share simulation over
 max_memory_sim=5			# Total memory per job, in GB, must be integer
-max_time_sim=00-00:10:00		# Max walltime per job ("dd-hh:mm:ss")   
+max_time_sim=00-10:00:00		# Max walltime per job ("dd-hh:mm:ss")   
 
 
 # -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  - 
 # Training parameters
 
+use_old_net=0
+save_old_net=1
 train=1
-use_architecture="" 
-import_weights=0
+
+architecture=""
+
 train_1d=1				# Whether to train for 1D-posteriors
 train_2d=0				# Whether to train for 2D posteriors
 train_from_scratch_1D=0		# Train from scratch? If True, overwrites net, if one
@@ -156,12 +153,12 @@ train_batch_size_2d=10			# Must be lower than nsim, preferably a multiple.
 learning_rate_1d=1e-3                  # Learning rate during training (for 1D and 2D posteriors)
 learning_rate_2d=1e-3                  # Must be lower than nsim, preferably a multiple. 
 
-
-partition_train=accel			# "normal", "accel" (if GPU), "accel_long" (GPU & time>1d)
-devel_train=1				# if yes, jobs run sooner, but max walltime is 2h.
+gpus=0					# Request GPU from cluster, yes or no
+partition_train=normal			# "normal", "accel" (if GPU), "accel_long" (GPU & time>1d)
+devel_train=0				# if yes, jobs run sooner, but max walltime is 2h.
 
 max_memory_train=40			# Total memory per job, in GB, must be integer
-max_time_train=00-00:10:00		# Max walltime ("dd-hh:mm:ss")
+max_time_train=00-10:00:00		# Max walltime ("dd-hh:mm:ss")
 
 
 # -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  - 
@@ -214,6 +211,7 @@ SUSPENDED \
 # Running analysis
 $analysis_scripts_location/run_swyft_analysis.sh \
 "\
+config_file=$0 ;\
 on_cluster=$on_cluster=int ;\
 start_dir=$PWD ;\
 results_parent_dir=$results_parent_dir ;\
@@ -249,6 +247,9 @@ devel_sim=$devel_sim=int ;\
 n_jobs_sim=$n_jobs_sim=int ;\
 max_memory_sim=$max_memory_sim ;\
 max_time_sim=$max_time_sim ;\
+use_old_net=$use_old_net=int ;\
+save_old_net=$save_old_net=int ;\
+architecture=$architecture ;\
 train=$train=int ;\
 train_1d=$train_1d=int ;\
 train_2d=$train_2d=int ;\
