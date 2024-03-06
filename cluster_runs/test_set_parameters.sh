@@ -31,7 +31,16 @@ safe_directory=$FOML3/cluster_runs/results
 # -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  - 
 # Technical
 
-run_name="sim_and_train" 		# Name of the series (of runs), identifying the results folder
+update_config=1
+
+update_config_on_cluster=1
+max_memory_config=5
+max_time_config=00-00:00:05
+partition_config=normal
+qos_config="devel"
+
+
+run_name="test_set_parameters" # Name of the series (of runs), identifying the results folder
 
 
 dirstore="0"			# If 1, operates with simulations on disk during simulation and,
@@ -44,7 +53,7 @@ account=ec12			# Mostly redundant, should always be ec12
 # -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  - 
 # Physical model configuration 
 
-update_config=1		# If 0, loads configuration from previous runs, unless this is
+update_physics=1		# If 0, loads configuration from previous runs, unless this is
 				# the first run. 
 
 
@@ -137,8 +146,8 @@ max_time_sim=00-10:00:00		# Max walltime per job ("dd-hh:mm:ss")
 # Training parameters
 
 use_old_net=0
-save_old_net=1
-train=1
+save_old_net=0
+train=0
 
 architecture=""
 
@@ -220,11 +229,17 @@ conda_env=$swyft_env ;\
 parent_directory=$parent_directory ;\
 scripts_dir=$analysis_scripts_location ;\
 safe_directory=$safe_directory  ;\
+update_config=$update_config=int ;\
+update_config_on_cluster=$update_config_on_cluster=int ;\
+max_memory_config=$max_memory_config ;\
+max_time_config=$max_time_config ;\
+partition_config=$partition_config ;\
+qos_config=$qos_config ;\
 run_name=$run_name  ;\
 gpus=$gpus=int  ;\
 dirstore=$dirstore  ;\
 account=$account  ;\
-update_config=$update_config=int ;\
+update_physics=$update_physics=int ;\
 POI_indices=$POI_indices=int ;\
 model=$model ;\
 nbins=$nbins=int ;\
