@@ -170,7 +170,7 @@ gpus=1					# Request GPU from cluster, yes or no
 partition_train=accel			# "normal", "accel" (if GPU), "accel_long" (GPU & time>1d)
 devel_train=1				# if yes, jobs run sooner, but max walltime is 2h.
 
-max_memory_train=4			# Total memory per job, in GB, must be integer
+max_memory_train=8			# Total memory per job, in GB, must be integer
 max_time_train=00-01:00:00		# Max walltime ("dd-hh:mm:ss")
 
 
