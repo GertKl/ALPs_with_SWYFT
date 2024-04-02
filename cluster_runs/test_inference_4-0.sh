@@ -40,7 +40,7 @@ partition_config=normal
 qos_config="devel"
 
 
-run_name="test_inference_3"      # Name of the series (of runs), identifying the results folder
+run_name="test_inference_4"      # Name of the series (of runs), identifying the results folder
 
 
 dirstore="0"			# If 1, operates with simulations on disk during simulation and,
@@ -102,10 +102,10 @@ POI_indices="     0,1,2,3    " # Which parameters to analyze for
 			
 param1="     10             |    10    |    0    |    0    |    m        |     nev     " # mass m in neV
 param2="  [-2 : 1]          |    10    |   -5    |    1    |    g        | e-11GeV^{-1}  " # coupling constant g in 10^(-11) /GeV
-param3="  [-11:-8]          |    10    |   -9    |    1    | Amplitude   |             " # Amplitude of power law, in "TeV-1 cm-2 s-1" 
-param4="    [1:4]           |    10    |  2.11   |    0    | index       |             " # Spectral index of the PWL 
+param3=" [7.94e-10:3.16e-9] |    10    |   1e-9  |    0    | Amplitude   |             " # Amplitude of power law, in "TeV-1 cm-2 s-1" 
+param4="    [1.7:2.4]       |    10    |  2.11   |    0    | index       |             " # Spectral index of the PWL 
 param5="     300            |    10    |  300    |    0    | E0          |             " # Reference energy (?) E0, In GeV
-param6="  [100:1000]        |    10    |  560    |    0    | Ecut        |             " # Cut-off energy Ecut, in GeV 
+param6="  [350:700]         |    10    |  560    |    0    | Ecut        |             " # Cut-off energy Ecut, in GeV 
 param7="    [8:27]          |    10    |   25    |    0    | rms_B       |             " # rms of B field, default = 10.
 param8="   [37:48]          |    10    |   39    |    0    | e_norm      |             " # normalization of electron density, default = 39.
 param9=" [3.4:4.07]         |    10    |  4.05   |    0    | e_norm_2    |             " # second normalization of electron density, see Churazov et al. 2003, Eq. 4, default = 4.05
@@ -140,9 +140,9 @@ truths=" \
 # Simulation parameters	
 
 
-use_old_sims=1 #$FOML3/cluster_runs/analysis_results/test_inference_2/archive/trial__3/store/store   # $FOML3/cluster_runs/storee/storicist
+use_old_sims=0  # $FOML3/cluster_runs/storee/storicist
 save_old_sims=0
-simulate=0
+simulate=1
 
 
 n_sim=1000000 				# Number of simulations
@@ -152,7 +152,7 @@ devel_sim=0				# if yes, jobs run sooner, but max walltime is 2h.
 
 n_jobs_sim=140				# Number of jobs to share simulation over
 max_memory_sim=5			# Total memory per job, in GB, must be integer
-max_time_sim=01-12:00:00		# Max walltime per job ("dd-hh:mm:ss")   
+max_time_sim=01-00:00:00		# Max walltime per job ("dd-hh:mm:ss")   
 
 
 # -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  - 
@@ -171,7 +171,7 @@ train_from_scratch_2D=0		# already exists. Corresponding to 1D- and 2D posterior
 
 	
 train_batch_size_1d=8192			# Batch size during training (for 1D and 2D posteriors) 
-max_epochs=2
+max_epochs=30000
 
 train_batch_size_2d=10			# Must be lower than nsim, preferably a multiple. 
 learning_rate_1d=1e-3                  # Learning rate during training (for 1D and 2D posteriors)
@@ -179,10 +179,10 @@ learning_rate_2d=1e-3                  # Must be lower than nsim, preferably a m
 
 gpus=1					# Request GPU from cluster, yes or no
 partition_train=accel			# "normal", "accel" (if GPU), "accel_long" (GPU & time>1d)
-devel_train=1				# if yes, jobs run sooner, but max walltime is 2h.
+devel_train=0				# if yes, jobs run sooner, but max walltime is 2h.
 
-max_memory_train=123			# Total memory per job, in GB, must be integer
-max_time_train=00-02:00:00		# Max walltime ("dd-hh:mm:ss")
+max_memory_train=240			# Total memory per job, in GB, must be integer
+max_time_train=01-00:00:00		# Max walltime ("dd-hh:mm:ss")
 
 
 # -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  - 

@@ -177,8 +177,8 @@ train_batch_size_2d=10			# Must be lower than nsim, preferably a multiple.
 learning_rate_1d=1e-3                  # Learning rate during training (for 1D and 2D posteriors)
 learning_rate_2d=1e-3                  # Must be lower than nsim, preferably a multiple. 
 
-gpus=1					# Request GPU from cluster, yes or no
-partition_train=accel			# "normal", "accel" (if GPU), "accel_long" (GPU & time>1d)
+gpus=0					# Request GPU from cluster, yes or no
+partition_train=normal			# "normal", "accel" (if GPU), "accel_long" (GPU & time>1d)
 devel_train=1				# if yes, jobs run sooner, but max walltime is 2h.
 
 max_memory_train=123			# Total memory per job, in GB, must be integer

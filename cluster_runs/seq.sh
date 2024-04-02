@@ -1,51 +1,35 @@
 #!/bin/bash
 
 
-while [  $(squeue -u $USER | wc -l) -gt 1 ] ; do
-	sleep 10
-done
+./test_inference-1.sh
 
-./test_gpu_1.sh
+echo --------------- Starting next run -------------------
 
+./test_inference-2.sh
 
-while [  $(squeue -u $USER | wc -l) -gt 1 ] ; do
-	sleep 10
-done
+echo --------------- Starting next run -------------------
 
-./test_gpu_2.sh
+./test_inference_4-0.sh
 
+echo --------------- Starting next run -------------------
 
-while [  $(squeue -u $USER | wc -l) -gt 1 ] ; do
-	sleep 10
-done
+./test_inference_4-1.sh
 
-./test_gpu_3.sh
+echo --------------- Starting next run -------------------
 
+./test_inference_4-2.sh
 
-while [  $(squeue -u $USER | wc -l) -gt 1 ] ; do
-	sleep 10
-done
+echo --------------- Starting next run -------------------
 
-./test_gpu_4.sh
+./test_inference_4-3.sh
 
 
-while [  $(squeue -u $USER | wc -l) -gt 1 ] ; do
-	sleep 10
-done
+echo --------------- Starting next run -------------------
 
-./test_gpu_5.sh
+./with_m.sh
 
 
-while [  $(squeue -u $USER | wc -l) -gt 1 ] ; do
-	sleep 10
-done
-
-./seq2.sh
-
-
-while [  $(squeue -u $USER | wc -l) -gt 1 ] ; do
-	sleep 10
-done
+echo finished seq3.sh
 
 exit 0
 

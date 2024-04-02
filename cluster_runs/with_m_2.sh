@@ -40,7 +40,7 @@ partition_config=normal
 qos_config="devel"
 
 
-run_name="test_inference_3"      # Name of the series (of runs), identifying the results folder
+run_name="with_m_2"      # Name of the series (of runs), identifying the results folder
 
 
 dirstore="0"			# If 1, operates with simulations on disk during simulation and,
@@ -100,12 +100,12 @@ POI_indices="     0,1,2,3    " # Which parameters to analyze for
 # 	   Simulated | Observed | Null-hyp.| is log? | name         |  unit 	
 #      -------------------------------------------------------------------
 			
-param1="     10             |    10    |    0    |    0    |    m        |     nev     " # mass m in neV
+param1="     [-2, 4]        |    10    |    -6   |    1    |    m        |     nev     " # mass m in neV
 param2="  [-2 : 1]          |    10    |   -5    |    1    |    g        | e-11GeV^{-1}  " # coupling constant g in 10^(-11) /GeV
-param3="  [-11:-8]          |    10    |   -9    |    1    | Amplitude   |             " # Amplitude of power law, in "TeV-1 cm-2 s-1" 
-param4="    [1:4]           |    10    |  2.11   |    0    | index       |             " # Spectral index of the PWL 
-param5="     300            |    10    |  300    |    0    | E0          |             " # Reference energy (?) E0, In GeV
-param6="  [100:1000]        |    10    |  560    |    0    | Ecut        |             " # Cut-off energy Ecut, in GeV 
+param3="  [-11:-8]          |    10    | -8.812  |    1    | Amplitude   |             " # Amplitude of power law, in "TeV-1 cm-2 s-1" 
+param4="    [0:4]           |    10    |  2.11   |    0    | index       |             " # Spectral index of the PWL 
+param5="     300            |    10    |   300    |    0    | E0          |             " # Reference energy (?) E0, In GeV
+param6="   [1:3.85]         |    10    |  2.75    |    1    | Ecut        |             " # Cut-off energy Ecut, in GeV 
 param7="    [8:27]          |    10    |   25    |    0    | rms_B       |             " # rms of B field, default = 10.
 param8="   [37:48]          |    10    |   39    |    0    | e_norm      |             " # normalization of electron density, default = 39.
 param9=" [3.4:4.07]         |    10    |  4.05   |    0    | e_norm_2    |             " # second normalization of electron density, see Churazov et al. 2003, Eq. 4, default = 4.05
@@ -117,8 +117,7 @@ param14=" [0.56:0.60]       |    10    |  0.58   |    0    | e_dens_4    |      
 param15=" [0.3:0.8]         |    10    |  0.5    |    0    | B_scaling   |             " # scaling of B-field with electron denstiy, default = 0.5
 param16=" [0.16:0.20]       |    10    | 0.18    |    0    | Max_turb    |             " # maximum turbulence scale in kpc^-1, taken from A2199 cool-core cluster, see Vacca et al. 2012, default = 0.18
 param17="   [8:10]          |    10    |    9    |    0    | min_turb    |             " # minimum turbulence scale, taken from A2199 cool-core cluster, see Vacca et al. 2012, default = 9. 
-param18=" [0.8:3.8]         |    10    | 2.8    |    0    | turb_index  |             " # turbulence spectral index, taken from A2199 cool-core cluster, see Vacca et al. 2012, default = -2.80 
-
+param18=" [0.8:3.8]         |    10    | 2.8    |    0    | turb_index  |             " # turbulence spectral index, taken from A2199 cool-core cluster, see Vacca et al. 2012, default = 2.80 
 
 truths=" \
 0 | -9 |  2  | 800 | 25.0 | 39.0 | 4.05 | 500.0 | 80.0 | 280.0 | 1.2 | 0.58 | 0.5 | 0.18 | 9.0 | 2.8  ,\
@@ -140,26 +139,26 @@ truths=" \
 # Simulation parameters	
 
 
-use_old_sims=1 #$FOML3/cluster_runs/analysis_results/test_inference_2/archive/trial__3/store/store   # $FOML3/cluster_runs/storee/storicist
+use_old_sims=1  # $FOML3/cluster_runs/storee/storicist
 save_old_sims=0
-simulate=0
+simulate=1
 
 
-n_sim=1000000 				# Number of simulations
+n_sim=10000000 				# Number of simulations
 
 partition_sim=normal			# Usually "normal", since simulation doesn't use GPUs. 
 devel_sim=0				# if yes, jobs run sooner, but max walltime is 2h. 
 
-n_jobs_sim=140				# Number of jobs to share simulation over
+n_jobs_sim=300				# Number of jobs to share simulation over
 max_memory_sim=5			# Total memory per job, in GB, must be integer
-max_time_sim=01-12:00:00		# Max walltime per job ("dd-hh:mm:ss")   
+max_time_sim=05-00:00:00		# Max walltime per job ("dd-hh:mm:ss")   
 
 
 # -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  - 
 # Training parameters
 
-use_old_net=0
-save_old_net=1
+use_old_net=1
+save_old_net=0
 train=1
 
 architecture=""
@@ -170,19 +169,19 @@ train_from_scratch_1D=0		# Train from scratch? If True, overwrites net, if one
 train_from_scratch_2D=0		# already exists. Corresponding to 1D- and 2D posteriors. 
 
 	
-train_batch_size_1d=8192			# Batch size during training (for 1D and 2D posteriors) 
-max_epochs=2
+train_batch_size_1d=8192		# Batch size during training (for 1D and 2D posteriors) 
+max_epochs=30000
 
 train_batch_size_2d=10			# Must be lower than nsim, preferably a multiple. 
 learning_rate_1d=1e-3                  # Learning rate during training (for 1D and 2D posteriors)
 learning_rate_2d=1e-3                  # Must be lower than nsim, preferably a multiple. 
 
 gpus=1					# Request GPU from cluster, yes or no
-partition_train=accel			# "normal", "accel" (if GPU), "accel_long" (GPU & time>1d)
-devel_train=1				# if yes, jobs run sooner, but max walltime is 2h.
+partition_train=accel_long			# "normal", "accel" (if GPU), "accel_long" (GPU & time>1d)
+devel_train=0				# if yes, jobs run sooner, but max walltime is 2h.
 
-max_memory_train=123			# Total memory per job, in GB, must be integer
-max_time_train=00-02:00:00		# Max walltime ("dd-hh:mm:ss")
+max_memory_train=240			# Total memory per job, in GB, must be integer
+max_time_train=07-00:00:00		# Max walltime ("dd-hh:mm:ss")
 
 
 # -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  - 
