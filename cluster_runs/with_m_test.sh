@@ -40,7 +40,7 @@ partition_config=normal
 qos_config="devel"
 
 
-run_name="with_m"      # Name of the series (of runs), identifying the results folder
+run_name="with_m_test"      # Name of the series (of runs), identifying the results folder
 
 
 dirstore="0"			# If 1, operates with simulations on disk during simulation and,
@@ -91,7 +91,7 @@ IRF_file="$FOML3/IRFs/CTA/Prod5-North-20deg-AverageAz-4LSTs09MSTs.180000s-v0.1.f
 
 # Model parameter configuration
 
-POI_indices="     0,1,2,3,4    " # Which parameters to analyze for 
+POI_indices="     0,1,2,3    " # Which parameters to analyze for 
 				# (e.g. "0,1,3" for 3 parameters, excluding parameter of index 2;
 				# NOTE: counting ONLY those parameters where the value isn't fixed!)
 
@@ -144,14 +144,14 @@ save_old_sims=0
 simulate=1
 
 
-n_sim=1000000 				# Number of simulations
+n_sim=100 				# Number of simulations
 
 partition_sim=normal			# Usually "normal", since simulation doesn't use GPUs. 
-devel_sim=0				# if yes, jobs run sooner, but max walltime is 2h. 
+devel_sim=1				# if yes, jobs run sooner, but max walltime is 2h. 
 
-n_jobs_sim=140				# Number of jobs to share simulation over
+n_jobs_sim=4				# Number of jobs to share simulation over
 max_memory_sim=5			# Total memory per job, in GB, must be integer
-max_time_sim=01-00:00:00		# Max walltime per job ("dd-hh:mm:ss")   
+max_time_sim=00-00:20:00		# Max walltime per job ("dd-hh:mm:ss")   
 
 
 # -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  - 
@@ -169,7 +169,7 @@ train_from_scratch_1D=0		# Train from scratch? If True, overwrites net, if one
 train_from_scratch_2D=0		# already exists. Corresponding to 1D- and 2D posteriors. 
 
 	
-train_batch_size_1d=8192			# Batch size during training (for 1D and 2D posteriors) 
+train_batch_size_1d=8			# Batch size during training (for 1D and 2D posteriors) 
 max_epochs=30000
 
 train_batch_size_2d=10			# Must be lower than nsim, preferably a multiple. 
@@ -177,11 +177,11 @@ learning_rate_1d=1e-3                  # Learning rate during training (for 1D a
 learning_rate_2d=1e-3                  # Must be lower than nsim, preferably a multiple. 
 
 gpus=1					# Request GPU from cluster, yes or no
-partition_train=accel_long			# "normal", "accel" (if GPU), "accel_long" (GPU & time>1d)
-devel_train=0				# if yes, jobs run sooner, but max walltime is 2h.
+partition_train=accel			# "normal", "accel" (if GPU), "accel_long" (GPU & time>1d)
+devel_train=1				# if yes, jobs run sooner, but max walltime is 2h.
 
-max_memory_train=240			# Total memory per job, in GB, must be integer
-max_time_train=02-00:00:00		# Max walltime ("dd-hh:mm:ss")
+max_memory_train=40			# Total memory per job, in GB, must be integer
+max_time_train=00-00:10:00		# Max walltime ("dd-hh:mm:ss")
 
 
 # -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  - 

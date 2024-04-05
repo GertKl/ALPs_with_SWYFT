@@ -91,7 +91,7 @@ IRF_file="$FOML3/IRFs/CTA/Prod5-North-20deg-AverageAz-4LSTs09MSTs.180000s-v0.1.f
 
 # Model parameter configuration
 
-POI_indices="     0,1,2,3    " # Which parameters to analyze for 
+POI_indices="     0,1,2,3,4    " # Which parameters to analyze for 
 				# (e.g. "0,1,3" for 3 parameters, excluding parameter of index 2;
 				# NOTE: counting ONLY those parameters where the value isn't fixed!)
 
@@ -100,7 +100,7 @@ POI_indices="     0,1,2,3    " # Which parameters to analyze for
 # 	   Simulated | Observed | Null-hyp.| is log? | name         |  unit 	
 #      -------------------------------------------------------------------
 			
-param1="     [-2, 4]        |    10    |    -6   |    1    |    m        |     nev     " # mass m in neV
+param1="     [-2 : 4]        |    10    |    -6   |    1    |    m        |     nev     " # mass m in neV
 param2="  [-2 : 1]          |    10    |   -5    |    1    |    g        | e-11GeV^{-1}  " # coupling constant g in 10^(-11) /GeV
 param3="  [-11:-8]          |    10    | -8.812  |    1    | Amplitude   |             " # Amplitude of power law, in "TeV-1 cm-2 s-1" 
 param4="    [0:4]           |    10    |  2.11   |    0    | index       |             " # Spectral index of the PWL 
