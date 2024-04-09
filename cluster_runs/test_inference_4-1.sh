@@ -145,18 +145,20 @@ save_old_sims=1
 simulate=1
 
 
-n_sim=1000000 				# Number of simulations
+n_sim_train=1000000 			# Number of simulations for training (split into traiing
+					# and testing set automatically)
+n_sim_coverage=50000			# Number of simulations for coverage tests. 
 
 partition_sim=normal			# Usually "normal", since simulation doesn't use GPUs. 
 devel_sim=0				# if yes, jobs run sooner, but max walltime is 2h. 
 
 n_jobs_sim=140				# Number of jobs to share simulation over
-max_memory_sim=5			# Total memory per job, in GB, must be integer
+max_memory_sim=10			# Total memory per job, in GB, must be integer
 max_time_sim=01-00:00:00		# Max walltime per job ("dd-hh:mm:ss")   
 
 
 # -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  - 
-# Training parameters
+# Training, inference and validation parameters
 
 use_old_net=0
 save_old_net=1
@@ -164,18 +166,10 @@ train=1
 
 architecture=""
 
-train_1d=1				# Whether to train for 1D-posteriors
-train_2d=0				# Whether to train for 2D posteriors
-train_from_scratch_1D=0		# Train from scratch? If True, overwrites net, if one
-train_from_scratch_2D=0		# already exists. Corresponding to 1D- and 2D posteriors. 
-
 	
-train_batch_size_1d=8192			# Batch size during training (for 1D and 2D posteriors) 
+train_batch_size_1d=4096		# Batch size during training (for 1D and 2D posteriors) 
 max_epochs=30000
 
-train_batch_size_2d=10			# Must be lower than nsim, preferably a multiple. 
-learning_rate_1d=1e-3                  # Learning rate during training (for 1D and 2D posteriors)
-learning_rate_2d=1e-3                  # Must be lower than nsim, preferably a multiple. 
 
 gpus=1					# Request GPU from cluster, yes or no
 partition_train=accel			# "normal", "accel" (if GPU), "accel_long" (GPU & time>1d)
@@ -202,7 +196,6 @@ plot_1d=1				# Whether to plot 1D histograms
 plot_corner=0				# Whether to plot corner-plot (incl. 2D histogram)
 
 color_truth="        1,0,1           " # Color to indicate the observed value with
-
 #-----------------------------------------------------------------------------------------------
 #------------------------------------- Execution -----------------------------------------------
 #-----------------------------------------------------------------------------------------------
@@ -274,7 +267,9 @@ truths=$truths=float ;\
 use_old_sims=$use_old_sims ;\
 save_old_sims=$save_old_sims=int ;\
 simulate=$simulate=int ;\
-n_sim=$n_sim=int ;\
+n_sim_train=$n_sim_train=int ;\
+n_sim_coverage=$n_sim_coverage=int ;\
+n_sim=$(($n_sim_train+$n_sim_coverage))=int ;\
 partition_sim=$partition_sim ;\
 devel_sim=$devel_sim=int ;\
 n_jobs_sim=$n_jobs_sim=int ;\
@@ -284,14 +279,7 @@ use_old_net=$use_old_net=int ;\
 save_old_net=$save_old_net=int ;\
 architecture=$architecture ;\
 train=$train=int ;\
-train_1d=$train_1d=int ;\
-train_2d=$train_2d=int ;\
-train_from_scratch_1D=$train_from_scratch_1D=int ;\
-train_from_scratch_2D=$train_from_scratch_2D=int ;\
 train_batch_size_1d=$train_batch_size_1d=int ;\
-train_batch_size_2d=$train_batch_size_2d=int ;\
-learning_rate_1d=$learning_rate_1d=float ;\
-learning_rate_2d=$learning_rate_2d=float ;\
 max_epochs=$max_epochs=int ;\
 partition_train=$partition_train ;\
 devel_train=$devel_train=int ;\
