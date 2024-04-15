@@ -77,7 +77,7 @@ emax="               6e3     " # maximum energy in GeV
 
 livetime="            10     " # Livetime; observation time of telescope in hours.
 
-ALP_seed="          	0     " # Seed for random B-field configurations. None if random seed. 
+ALP_seed="          None     " # Seed for random B-field configurations. None if random seed. 
 
 floor_exp="        -1.15     " # Minimum value of any bin in expected (log-)(residual)counts 
 
@@ -101,7 +101,7 @@ POI_indices="     0,1,2,3,4    " # Which parameters to analyze for
 #      -------------------------------------------------------------------
 			
 param1="   [-2 : 4]         |    10    |   -6    |    1    |    m        |     nev     " # mass m in neV
-param2="   [-2 : 1]         |    10    |   -5    |    1    |    g        | e-11GeV^{-1}  " # coupling constant g in 10^(-11) /GeV
+param2="   [-2 : 1]         |    10    |   -5    |    1    |    g        | e-11GeV^{-1} " # coupling constant g in 10^(-11) /GeV
 param3="  [-9.2:-8.3]       |    10    | -8.812  |    1    | Amplitude   |             " # Amplitude of power law, in "TeV-1 cm-2 s-1" 
 param4="    [1.5:2.4]       |    10    |  2.11   |    0    | index       |             " # Spectral index of the PWL 
 param5="     300            |    10    |   300   |    0    | E0          |             " # Reference energy (?) E0, In GeV
@@ -109,16 +109,15 @@ param6="   [2.3:3.0]        |    10    |  2.75   |    1    | Ecut        |      
 param7="      25            |    10    |   25    |    0    | rms_B       |             " # rms of B field, default = 10.
 param8="      39            |    10    |   39    |    0    | e_norm      |             " # normalization of electron density, default = 39.
 param9="     4.05           |    10    |  4.05   |    0    | e_norm_2    |             " # second normalization of electron density, see Churazov et al. 2003, Eq. 4, default = 4.05
-param10="    500            |    10    |   500   |    0    | cluster_ext |     kpc     " # extension of the cluster, default = 500.
-param11="     80            |    10    |    80   |    0    | e_dens_1    |             " # electron density parameter, see Churazov et al. 2003, Eq. 4, default = 80.
-param12="    280            |    10    |   280   |    0    | e_dens_2    |             " # electron density parameter, see Churazov et al. 2003, Eq. 4, default = 200.
-param13="    1.2            |    10    |   1.2   |    0    | e_dens_3    |             " # electron density parameter, see Churazov et al. 2003, Eq. 4, default = 1.2
+param10="    500            |    10    |  500    |    0    | cluster_ext |     kpc     " # extension of the cluster, default = 500.
+param11="     80            |    10    |   80    |    0    | e_dens_1    |             " # electron density parameter, see Churazov et al. 2003, Eq. 4, default = 80.
+param12="     280           |    10    |  280    |    0    | e_dens_2    |             " # electron density parameter, see Churazov et al. 2003, Eq. 4, default = 200.
+param13="     1.2           |    10    |  1.2    |    0    | e_dens_3    |             " # electron density parameter, see Churazov et al. 2003, Eq. 4, default = 1.2
 param14="    0.58           |    10    |  0.58   |    0    | e_dens_4    |             " # electron density parameter, see Churazov et al. 2003, Eq. 4, default = 0.58
-param15="    0.5            |    10    |   0.5   |    0    | B_scaling   |             " # scaling of B-field with electron denstiy, default = 0.5
+param15="     0.5           |    10    |  0.5    |    0    | B_scaling   |             " # scaling of B-field with electron denstiy, default = 0.5
 param16="    0.18           |    10    |  0.18   |    0    | Max_turb    |             " # maximum turbulence scale in kpc^-1, taken from A2199 cool-core cluster, see Vacca et al. 2012, default = 0.18
-param17="     9             |    10    |    9    |    0    | min_turb    |             " # minimum turbulence scale, taken from A2199 cool-core cluster, see Vacca et al. 2012, default = 9. 
-param18="    2.8            |    10    |   2.8   |    0    | turb_index  |             " # turbulence spectral index, taken from A2199 cool-core cluster, see Vacca et al. 2012, default = 2.80 
-
+param17="      9            |    10    |    9    |    0    | min_turb    |             " # minimum turbulence scale, taken from A2199 cool-core cluster, see Vacca et al. 2012, default = 9. 
+param18="    2.8            |    10    |  2.8    |    0    | turb_index  |             " # turbulence spectral index, taken from A2199 cool-core cluster, see Vacca et al. 2012, default = 2.80 
 truths=" \
 0 | -9 |  2  | 800 | 25.0 | 39.0 | 4.05 | 500.0 | 80.0 | 280.0 | 1.2 | 0.58 | 0.5 | 0.18 | 9.0 | 2.8  ,\
 0 | -9 | 0.5 | 800 | 25.0 | 39.0 | 4.05 | 500.0 | 80.0 | 280.0 | 1.2 | 0.58 | 0.5 | 0.18 | 9.0 | 2.8  ,\
@@ -139,9 +138,9 @@ truths=" \
 # Simulation parameters	
 
 
-use_old_sims=0  # $FOML3/cluster_runs/storee/storicist
-save_old_sims=1
-simulate=1
+use_old_sims=1  # $FOML3/cluster_runs/storee/storicist
+save_old_sims=0
+simulate=0
 
 
 n_sim_train=1000000			# Number of simulations for training (split into traiing
@@ -174,8 +173,8 @@ gpus=1					# Request GPU from cluster, yes or no
 partition_train=accel			# "normal", "accel" (if GPU), "accel_long" (GPU & time>1d)
 devel_train=0				# if yes, jobs run sooner, but max walltime is 2h.
 
-max_memory_train=240			# Total memory per job, in GB, must be integer
-max_time_train=00-05:00:00		# Max walltime ("dd-hh:mm:ss")
+max_memory_train=50			# Total memory per job, in GB, must be integer
+max_time_train=00-04:30:00		# Max walltime ("dd-hh:mm:ss")
 
 
 # -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  - 
