@@ -24,7 +24,7 @@ Install conda (if you haven't already), and create a conda environment from the 
 
 ``` 
 conda activate
-conda env create --file env_noswyft.yaml --name <your_env_name>
+conda env create --file env_noswyft.yml --name <your_env_name>
 ```
 
 To install SWYFT, you can either:
