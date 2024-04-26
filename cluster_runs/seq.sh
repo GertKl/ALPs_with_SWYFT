@@ -1,24 +1,13 @@
 #!/bin/bash
 
 
-while [  $(squeue -u $USER | wc -l) -gt 1 ] ; do
-	sleep 60
-done
+./no_nuisance.sh
 
+./nuisance_is_index.sh
 
+./nuisance_is_index_and_ecut.sh
 
-./test_inference_4-1.sh
-
-echo --------------- Starting next run -------------------
-
-./test_inference_4-2.sh
-
-echo --------------- Starting next run -------------------
-
-./test_inference_4-3.sh
-
-
-echo finished seq3.sh
+./tenMill_0.sh
 
 exit 0
 

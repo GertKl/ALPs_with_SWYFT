@@ -40,7 +40,7 @@ partition_config=normal
 qos_config="devel"
 
 
-run_name="test_analysis"      # Name of the series (of runs), identifying the results folder
+run_name="no_nuisance"      # Name of the series (of runs), identifying the results folder
 	
 				
 account=ec12			# Mostly redundant, should always be ec12 
@@ -49,7 +49,7 @@ account=ec12			# Mostly redundant, should always be ec12
 # -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  - 
 # Physical model configuration 
 
-update_physics=0		# If 0, loads configuration from previous runs, unless this is
+update_physics=1		# If 0, loads configuration from previous runs, unless this is
 				# the first run. 
 save_physics=1
 
@@ -73,7 +73,7 @@ emax="               6e3     " # maximum energy in GeV
 
 livetime="            10     " # Livetime; observation time of telescope in hours.
 
-ALP_seed="          None     " # Seed for random B-field configurations. None if random seed. 
+ALP_seed="             0     " # Seed for random B-field configurations. None if random seed. 
 
 floor_exp="        -1.15     " # Minimum value of any bin in expected (log-)(residual)counts 
 
@@ -98,10 +98,10 @@ POI_indices="     0,1        " # Which parameters to analyze for
 			
 param1="   [-2 : 4]         |    10    |   -6    |    1    |    m        |     nev     " # mass m in neV
 param2="   [-2 : 1]         |    10    |   -5    |    1    |    g        | e-11GeV^{-1} " # coupling constant g in 10^(-11) /GeV
-param3="  [-9.2:-8.3]       |    10    | -8.812  |    1    | Amplitude   |             " # Amplitude of power law, in "TeV-1 cm-2 s-1" 
-param4="    [1.5:2.4]       |    10    |  2.11   |    0    | index       |             " # Spectral index of the PWL 
+param3="    -8.812          |    10    | -8.812  |    1    | Amplitude   |             " # Amplitude of power law, in "TeV-1 cm-2 s-1" 
+param4="     2.11           |    10    |  2.11   |    0    | index       |             " # Spectral index of the PWL 
 param5="     300            |    10    |   300   |    0    | E0          |             " # Reference energy (?) E0, In GeV
-param6="   [2.3:3.0]        |    10    |  2.75   |    1    | Ecut        |             " # Cut-off energy Ecut, in GeV 
+param6="     2.75           |    10    |  2.75   |    1    | Ecut        |             " # Cut-off energy Ecut, in GeV 
 param7="      25            |    10    |   25    |    0    | rms_B       |             " # rms of B field, default = 10.
 param8="      39            |    10    |   39    |    0    | e_norm      |             " # normalization of electron density, default = 39.
 param9="     4.05           |    10    |  4.05   |    0    | e_norm_2    |             " # second normalization of electron density, see Churazov et al. 2003, Eq. 4, default = 4.05
@@ -120,7 +120,6 @@ param18="    2.8            |    10    |  2.8    |    0    | turb_index  |      
 
 
 
-
 #-----------------------------------------------------------------------------------------------
 #-------- TECHNICAL PARAMETERS (may be changed when re-running) --------------------------------
 #-----------------------------------------------------------------------------------------------
@@ -130,19 +129,19 @@ param18="    2.8            |    10    |  2.8    |    0    | turb_index  |      
 # Simulation parameters	
 
 
-use_old_sims=0  # $FOML3/cluster_runs/storee/storicist
-save_old_sims=1
+use_old_sims=1  # $FOML3/cluster_runs/storee/storicist
+save_old_sims=0
 simulate=1
 
 
-n_sim_train=1000			# Number of simulations for training (split into traiing
+n_sim_train=1000000			# Number of simulations for training (split into traiing
 					# and testing set automatically)
-n_sim_coverage=0			# Number of simulations for coverage tests. 
+n_sim_coverage=100000			# Number of simulations for coverage tests. 
 
 partition_sim=normal			# Usually "normal", since simulation doesn't use GPUs. 
 devel_sim=0				# if yes, jobs run sooner, but max walltime is 2h. 
 
-n_jobs_sim=100				# Number of jobs to share simulation over
+n_jobs_sim=225				# Number of jobs to share simulation over
 max_memory_sim=10			# Total memory per job, in GB, must be integer
 max_time_sim=01-00:00:00		# Max walltime per job ("dd-hh:mm:ss")   
 
@@ -152,18 +151,18 @@ max_time_sim=01-00:00:00		# Max walltime per job ("dd-hh:mm:ss")
 
 use_old_net=0
 save_old_net=1
-train=0
+train=1
 
 
 architecture=""
-restricted_posterior=1
+restricted_posterior=0
 
-train_batch_size_1d=10 		# Batch size during training (for 1D and 2D posteriors) 
+train_batch_size_1d=4096 		# Batch size during training (for 1D and 2D posteriors) 
 max_epochs=3000
-stopping_patience=5
+stopping_patience=20
 
 
-gpus=0					# Request GPU from cluster, yes or no
+gpus=1					# Request GPU from cluster, yes or no
 partition_train=accel			# "normal", "accel" (if GPU), "accel_long" (GPU & time>1d)
 devel_train=0				# if yes, jobs run sooner, but max walltime is 2h.
 
@@ -196,7 +195,28 @@ color_truth="        1,0,1           " # Color to indicate the observed value wi
 # Declaring some derived variables
 results_parent_dir=$PWD/analysis_results
 results_dir=$results_parent_dir/$run_name
-n_sim=$(($n_sim_train+$n_sim_coverage))
+
+# Some helpful lists for the pipeline to know. 
+
+#stopping_states="\
+#FAILED ,\
+#CANCELLED ,\
+#CANCELLED+ ,\
+#COMPLETED ,\
+#TIMEOUT ,\
+#PREEMPTED ,\
+#NODE_FAIL ,\
+#OUT_OF_MEMORY \
+#"
+
+#running_states="\
+#PENDING ,\
+#RUNNING ,\
+#SUSPENDED \
+#"
+
+
+
 
 # Running analysis
 $analysis_scripts_location/run_swyft_analysis.sh \
@@ -240,7 +260,7 @@ save_old_sims=$save_old_sims=int ;\
 simulate=$simulate=int ;\
 n_sim_train=$n_sim_train=int ;\
 n_sim_coverage=$n_sim_coverage=int ;\
-n_sim=$n_sim=int ;\
+n_sim=$(($n_sim_train+$n_sim_coverage))=int ;\
 partition_sim=$partition_sim ;\
 devel_sim=$devel_sim=int ;\
 n_jobs_sim=$n_jobs_sim=int ;\
