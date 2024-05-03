@@ -40,7 +40,7 @@ partition_config=normal
 qos_config="devel"
 
 
-run_name="tenMill"      # Name of the series (of runs), identifying the results folder
+run_name="hundredK"      # Name of the series (of runs), identifying the results folder
 	
 				
 account=ec12			# Mostly redundant, should always be ec12 
@@ -129,12 +129,12 @@ param18=" [0.8:3.8]         |    10    | 2.8    |    0    | turb_index  |       
 # Simulation parameters	
 
 
-use_old_sims=/home/gertwk/ALPs_with_SWYFT/cluster_runs/tenmillstore/store
+use_old_sims=0
 save_old_sims=1
 simulate=1
 
 
-n_sim_train=10000000			# Number of simulations for training (split into traiing
+n_sim_train=100000			# Number of simulations for training (split into traiing
 					# and testing set automatically)
 n_sim_coverage=100000			# Number of simulations for coverage tests. 
 
