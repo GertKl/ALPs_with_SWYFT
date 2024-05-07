@@ -40,7 +40,7 @@ partition_config=normal
 qos_config="devel"
 
 
-run_name="test_batch_size"      # Name of the series (of runs), identifying the results folder
+run_name="grid_test"      # Name of the series (of runs), identifying the results folder
 	
 				
 account=ec12			# Mostly redundant, should always be ec12 
@@ -129,7 +129,7 @@ param18=" [0.8:3.8]         |    10    | 2.8    |    0    | turb_index  |       
 # Simulation parameters	
 
 
-use_old_sims=/home/gertwk/ALPs_with_SWYFT/cluster_runs/analysis_results/tenMill/archive/trial__4/store/store
+use_old_sims=1 #/home/gertwk/ALPs_with_SWYFT/cluster_runs/analysis_results/tenMill/archive/trial__4/store/store
 save_old_sims=0
 simulate=0
 
@@ -157,7 +157,7 @@ train=1
 architecture=""
 restricted_posterior=0
 
-train_batch_size_1d=8192 		# Batch size during training (for 1D and 2D posteriors) 
+train_batch_size_1d=4096 		# Batch size during training (for 1D and 2D posteriors) 
 max_epochs=3000
 stopping_patience=20
 
