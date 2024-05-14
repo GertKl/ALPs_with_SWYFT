@@ -51,7 +51,7 @@ account=ec12			# Mostly redundant, should always be ec12
 
 update_physics=0		# If 0, loads configuration from previous runs, unless this is
 				# the first run. 
-save_physics=1
+save_physics=0
 
 
 model="            	      " # Which model to analyze
@@ -130,19 +130,19 @@ param18="    2.8            |    10    |  2.8    |    0    | turb_index  |      
 # Simulation parameters	
 
 
-use_old_sims=0  # $FOML3/cluster_runs/storee/storicist
-save_old_sims=1
-simulate=1
+use_old_sims=1  # $FOML3/cluster_runs/storee/storicist
+save_old_sims=0
+simulate=0
 
 
-n_sim_train=1000			# Number of simulations for training (split into traiing
+n_sim_train=10000			# Number of simulations for training (split into traiing
 					# and testing set automatically)
 n_sim_coverage=0			# Number of simulations for coverage tests. 
 
 partition_sim=normal			# Usually "normal", since simulation doesn't use GPUs. 
 devel_sim=0				# if yes, jobs run sooner, but max walltime is 2h. 
 
-n_jobs_sim=100				# Number of jobs to share simulation over
+n_jobs_sim=20				# Number of jobs to share simulation over
 max_memory_sim=10			# Total memory per job, in GB, must be integer
 max_time_sim=01-00:00:00		# Max walltime per job ("dd-hh:mm:ss")   
 
@@ -152,15 +152,24 @@ max_time_sim=01-00:00:00		# Max walltime per job ("dd-hh:mm:ss")
 
 use_old_net=0
 save_old_net=1
-train=0
+train=1
 
 
-architecture=""
-restricted_posterior=1
+architecture="" #$FOML3/analysis_scripts/ALP_sim/network_power.py
+restricted_posterior=0
 
 train_batch_size_1d=10 		# Batch size during training (for 1D and 2D posteriors) 
 max_epochs=3000
-stopping_patience=5
+
+learning_rates=5e-3
+patiences=5
+dropouts=0.1
+depths=2
+n_featureses=64
+data_featureses=64
+power_featureses=64
+
+start_grid_test_at_count=0
 
 
 gpus=0					# Request GPU from cluster, yes or no
@@ -171,23 +180,6 @@ max_memory_train=50			# Total memory per job, in GB, must be integer
 max_time_train=00-04:30:00		# Max walltime ("dd-hh:mm:ss")
 
 
-# -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  - 
-# Inference 
-
-infer=1				# Whether to do any inference
-infer_1d=1 				# Whether to do inference for 1D posteriors
-infer_2d=0 				# Whether to do inference for 2D posteriors
-
-n_sample_1d=100000 			# Number of samples from 1D posterior (for histograms)
-n_sample_2d=100000 			# Number of samples from 2D posterior (for histograms)
-
-sample_batch_size_1d=10		# Batch size when sampling. Related to memory-use of
-sample_batch_size_2d=10		# processing units, I think.
-
-plot_1d=1				# Whether to plot 1D histograms
-plot_corner=0				# Whether to plot corner-plot (incl. 2D histogram)
-
-color_truth="        1,0,1           " # Color to indicate the observed value with
 
 #-----------------------------------------------------------------------------------------------
 #------------------------------------- Execution -----------------------------------------------
@@ -253,21 +245,18 @@ restricted_posterior=$restricted_posterior=int ;\
 train=$train=int ;\
 train_batch_size_1d=$train_batch_size_1d=int ;\
 max_epochs=$max_epochs=int ;\
-stopping_patience=$stopping_patience=int ;\
+patiences=$patiences=int ;\
+learning_rates=$learning_rates=float ;\
+dropouts=$dropouts=float ;\
+depths=$depths=int ;\
+n_featureses=$n_featureses=int ;\
+data_featureses=$data_featureses=int ;\
+power_featureses=$power_featureses=int ;\
+start_grid_test_at_count=$start_grid_test_at_count=int ;\
 partition_train=$partition_train ;\
 devel_train=$devel_train=int ;\
 max_memory_train=$max_memory_train ;\
 max_time_train=$max_time_train ;\
-infer=$infer=int ;\
-infer_1d=$infer_1d=int ;\
-infer_2d=$infer_2d=int ;\
-n_sample_1d=$n_sample_1d=int ;\
-n_sample_2d=$n_sample_2d=int ;\
-sample_batch_size_1d=$sample_batch_size_1d=int ;\
-sample_batch_size_2d=$sample_batch_size_2d=int ;\
-plot_1d=$plot_1d=int ;\
-plot_corner=$plot_corner=int ;\
-color_truth=$color_truth=float ;\
 "
 
 #running_states=$running_states ;\

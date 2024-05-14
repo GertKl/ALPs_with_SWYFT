@@ -1,13 +1,10 @@
 #!/bin/bash
 
+sleep 108000
 
-./no_nuisance.sh
+./grid_test.sh
 
-./nuisance_is_index.sh
 
-./nuisance_is_index_and_ecut.sh
-
-./tenMill_0.sh
 
 exit 0
 

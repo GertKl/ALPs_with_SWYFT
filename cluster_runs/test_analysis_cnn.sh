@@ -40,7 +40,7 @@ partition_config=normal
 qos_config="devel"
 
 
-run_name="grid_test_power_2"      # Name of the series (of runs), identifying the results folder
+run_name="test_analysis_cnn"      # Name of the series (of runs), identifying the results folder
 	
 				
 account=ec12			# Mostly redundant, should always be ec12 
@@ -49,9 +49,9 @@ account=ec12			# Mostly redundant, should always be ec12
 # -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  - 
 # Physical model configuration 
 
-update_physics=1		# If 0, loads configuration from previous runs, unless this is
+update_physics=0		# If 0, loads configuration from previous runs, unless this is
 				# the first run. 
-save_physics=1
+save_physics=0
 
 
 model="            	      " # Which model to analyze
@@ -87,7 +87,7 @@ IRF_file="$FOML3/IRFs/CTA/Prod5-North-20deg-AverageAz-4LSTs09MSTs.180000s-v0.1.f
 
 # Model parameter configuration
 
-POI_indices="     0,1,2,3,4    " # Which parameters to analyze for 
+POI_indices="     0,1        " # Which parameters to analyze for 
 				# (e.g. "0,1,3" for 3 parameters, excluding parameter of index 2;
 				# NOTE: counting ONLY those parameters where the value isn't fixed!)
 
@@ -97,23 +97,24 @@ POI_indices="     0,1,2,3,4    " # Which parameters to analyze for
 #      -------------------------------------------------------------------
 			
 param1="   [-2 : 4]         |    10    |   -6    |    1    |    m        |     nev     " # mass m in neV
-param2="   [-2 : 1]         |    10    |   -5    |    1    |    g        | e-11GeV^{-1}  " # coupling constant g in 10^(-11) /GeV
+param2="   [-2 : 1]         |    10    |   -5    |    1    |    g        | e-11GeV^{-1} " # coupling constant g in 10^(-11) /GeV
 param3="  [-9.2:-8.3]       |    10    | -8.812  |    1    | Amplitude   |             " # Amplitude of power law, in "TeV-1 cm-2 s-1" 
 param4="    [1.5:2.4]       |    10    |  2.11   |    0    | index       |             " # Spectral index of the PWL 
 param5="     300            |    10    |   300   |    0    | E0          |             " # Reference energy (?) E0, In GeV
 param6="   [2.3:3.0]        |    10    |  2.75   |    1    | Ecut        |             " # Cut-off energy Ecut, in GeV 
-param7="    [8:27]          |    10    |   25    |    0    | rms_B       |             " # rms of B field, default = 10.
-param8="   [37:48]          |    10    |   39    |    0    | e_norm      |             " # normalization of electron density, default = 39.
-param9=" [3.4:4.07]         |    10    |  4.05   |    0    | e_norm_2    |             " # second normalization of electron density, see Churazov et al. 2003, Eq. 4, default = 4.05
-param10=" [450:550]         |    10    |  500    |    0    | cluster_ext |     kpc     " # extension of the cluster, default = 500.
-param11=" [70:290]          |    10    |   80    |    0    | e_dens_1    |             " # electron density parameter, see Churazov et al. 2003, Eq. 4, default = 80.
-param12=" [276:282]         |    10    |  280    |    0    | e_dens_2    |             " # electron density parameter, see Churazov et al. 2003, Eq. 4, default = 200.
-param13=" [1.0:1.4]         |    10    |  1.2    |    0    | e_dens_3    |             " # electron density parameter, see Churazov et al. 2003, Eq. 4, default = 1.2
-param14=" [0.56:0.60]       |    10    |  0.58   |    0    | e_dens_4    |             " # electron density parameter, see Churazov et al. 2003, Eq. 4, default = 0.58
-param15=" [0.3:0.8]         |    10    |  0.5    |    0    | B_scaling   |             " # scaling of B-field with electron denstiy, default = 0.5
-param16=" [0.16:0.20]       |    10    | 0.18    |    0    | Max_turb    |             " # maximum turbulence scale in kpc^-1, taken from A2199 cool-core cluster, see Vacca et al. 2012, default = 0.18
-param17="   [8:10]          |    10    |    9    |    0    | min_turb    |             " # minimum turbulence scale, taken from A2199 cool-core cluster, see Vacca et al. 2012, default = 9. 
-param18=" [0.8:3.8]         |    10    | 2.8    |    0    | turb_index  |             " # turbulence spectral index, taken from A2199 cool-core cluster, see Vacca et al. 2012, default = 2.80 
+param7="      25            |    10    |   25    |    0    | rms_B       |             " # rms of B field, default = 10.
+param8="      39            |    10    |   39    |    0    | e_norm      |             " # normalization of electron density, default = 39.
+param9="     4.05           |    10    |  4.05   |    0    | e_norm_2    |             " # second normalization of electron density, see Churazov et al. 2003, Eq. 4, default = 4.05
+param10="    500            |    10    |  500    |    0    | cluster_ext |     kpc     " # extension of the cluster, default = 500.
+param11="     80            |    10    |   80    |    0    | e_dens_1    |             " # electron density parameter, see Churazov et al. 2003, Eq. 4, default = 80.
+param12="     280           |    10    |  280    |    0    | e_dens_2    |             " # electron density parameter, see Churazov et al. 2003, Eq. 4, default = 200.
+param13="     1.2           |    10    |  1.2    |    0    | e_dens_3    |             " # electron density parameter, see Churazov et al. 2003, Eq. 4, default = 1.2
+param14="    0.58           |    10    |  0.58   |    0    | e_dens_4    |             " # electron density parameter, see Churazov et al. 2003, Eq. 4, default = 0.58
+param15="     0.5           |    10    |  0.5    |    0    | B_scaling   |             " # scaling of B-field with electron denstiy, default = 0.5
+param16="    0.18           |    10    |  0.18   |    0    | Max_turb    |             " # maximum turbulence scale in kpc^-1, taken from A2199 cool-core cluster, see Vacca et al. 2012, default = 0.18
+param17="      9            |    10    |    9    |    0    | min_turb    |             " # minimum turbulence scale, taken from A2199 cool-core cluster, see Vacca et al. 2012, default = 9. 
+param18="    2.8            |    10    |  2.8    |    0    | turb_index  |             " # turbulence spectral index, taken from A2199 cool-core cluster, see Vacca et al. 2012, default = 2.80 
+
 
 
 
@@ -129,20 +130,20 @@ param18=" [0.8:3.8]         |    10    | 2.8    |    0    | turb_index  |       
 # Simulation parameters	
 
 
-use_old_sims=/home/gertwk/ALPs_with_SWYFT/cluster_runs/analysis_results/grid_test_power/sim_output/store/store
-save_old_sims=1
+use_old_sims=1  # $FOML3/cluster_runs/storee/storicist
+save_old_sims=0
 simulate=0
 
 
-n_sim_train=1000000			# Number of simulations for training (split into traiing
+n_sim_train=1000			# Number of simulations for training (split into traiing
 					# and testing set automatically)
-n_sim_coverage=100000			# Number of simulations for coverage tests. 
+n_sim_coverage=0			# Number of simulations for coverage tests. 
 
 partition_sim=normal			# Usually "normal", since simulation doesn't use GPUs. 
 devel_sim=0				# if yes, jobs run sooner, but max walltime is 2h. 
 
-n_jobs_sim=25				# Number of jobs to share simulation over
-max_memory_sim=25			# Total memory per job, in GB, must be integer
+n_jobs_sim=20				# Number of jobs to share simulation over
+max_memory_sim=10			# Total memory per job, in GB, must be integer
 max_time_sim=01-00:00:00		# Max walltime per job ("dd-hh:mm:ss")   
 
 
@@ -154,24 +155,37 @@ save_old_net=1
 train=1
 
 
-architecture=$FOML3/analysis_scripts/ALP_sim/network_power.py
+architecture=$FOML3/analysis_scripts/ALP_sim/network_cnn.py
 restricted_posterior=0
 
-train_batch_size_1d=512 		# Batch size during training (for 1D and 2D posteriors) 
+train_batch_size_1d=64 		# Batch size during training (for 1D and 2D posteriors) 
 max_epochs=3000
 
-learning_rates=5e-3,5e-4
-patiences=60
-dropouts=0,0.1
+learning_rates=5e-3
+patiences=5
+dropouts=0.1
 depths=2
-n_featureses=128
-data_featureses=128,64,32,8,4
-power_featureses=128,64,32,8,4
+n_featureses=64
+data_featureses=0
+power_featureses=0
+
+#hyperparams=$learning_rates,$patiences,$dropouts,$depths,$n_featureses,$data_featureses,$power_featureses
+
+hyperparams=" 	--learning_rate (float) : 5e-3  \
+		--stopping_patience (int): 5 	\
+		--dropout (float): 0, 0.1 	\
+		--blocks (int): 2  		\
+		--features (int): 2  		\
+		--kernel_size (int): 4  	\
+		--channels (int): 4  		\
+"	
+
+
 
 start_grid_test_at_count=0
 
 
-gpus=1					# Request GPU from cluster, yes or no
+gpus=0					# Request GPU from cluster, yes or no
 partition_train=accel			# "normal", "accel" (if GPU), "accel_long" (GPU & time>1d)
 devel_train=0				# if yes, jobs run sooner, but max walltime is 2h.
 
@@ -249,6 +263,7 @@ learning_rates=$learning_rates=float ;\
 dropouts=$dropouts=float ;\
 depths=$depths=int ;\
 n_featureses=$n_featureses=int ;\
+hyperparams=$hyperparams ;\
 data_featureses=$data_featureses=int ;\
 power_featureses=$power_featureses=int ;\
 start_grid_test_at_count=$start_grid_test_at_count=int ;\

@@ -40,7 +40,7 @@ partition_config=normal
 qos_config="devel"
 
 
-run_name="grid_test_power_2"      # Name of the series (of runs), identifying the results folder
+run_name="grid_test_cnn"      # Name of the series (of runs), identifying the results folder
 	
 				
 account=ec12			# Mostly redundant, should always be ec12 
@@ -129,8 +129,8 @@ param18=" [0.8:3.8]         |    10    | 2.8    |    0    | turb_index  |       
 # Simulation parameters	
 
 
-use_old_sims=/home/gertwk/ALPs_with_SWYFT/cluster_runs/analysis_results/grid_test_power/sim_output/store/store
-save_old_sims=1
+use_old_sims=1 #/home/gertwk/ALPs_with_SWYFT/cluster_runs/analysis_results/grid_test_power/sim_output/store/store
+save_old_sims=0
 simulate=0
 
 
@@ -143,8 +143,7 @@ devel_sim=0				# if yes, jobs run sooner, but max walltime is 2h.
 
 n_jobs_sim=25				# Number of jobs to share simulation over
 max_memory_sim=25			# Total memory per job, in GB, must be integer
-max_time_sim=01-00:00:00		# Max walltime per job ("dd-hh:mm:ss")   
-
+max_time_sim=01-00:00:00		# Max walltime per job ("dd-hh:mm:ss")  
 
 # -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  - 
 # Training, inference and validation parameters
@@ -154,24 +153,31 @@ save_old_net=1
 train=1
 
 
-architecture=$FOML3/analysis_scripts/ALP_sim/network_power.py
+architecture=$FOML3/analysis_scripts/ALP_sim/network_cnn.py
 restricted_posterior=0
 
-train_batch_size_1d=512 		# Batch size during training (for 1D and 2D posteriors) 
+train_batch_size_1d=4096 		# Batch size during training (for 1D and 2D posteriors) 
 max_epochs=3000
 
-learning_rates=5e-3,5e-4
-patiences=60
-dropouts=0,0.1
-depths=2
-n_featureses=128
-data_featureses=128,64,32,8,4
-power_featureses=128,64,32,8,4
+
+#hyperparams=$learning_rates,$patiences,$dropouts,$depths,$n_featureses,$data_featureses,$power_featureses
+
+hyperparams=" 	--learning_rate (float) : 5e-3  \
+		--stopping_patience (int): 15 	 \
+		--dropout (float): 0.1,0 	 \
+		--blocks (int): 2  		 \
+		--features (int): 64  		 \
+		--kernel_size (int): 16,8,4    	\
+		--channels (int): 4,2,1  	 	\
+		--logratio_features (int): 32,16,8     \
+"	
+
+
 
 start_grid_test_at_count=0
 
 
-gpus=1					# Request GPU from cluster, yes or no
+gpus=0					# Request GPU from cluster, yes or no
 partition_train=accel			# "normal", "accel" (if GPU), "accel_long" (GPU & time>1d)
 devel_train=0				# if yes, jobs run sooner, but max walltime is 2h.
 
@@ -244,13 +250,7 @@ restricted_posterior=$restricted_posterior=int ;\
 train=$train=int ;\
 train_batch_size_1d=$train_batch_size_1d=int ;\
 max_epochs=$max_epochs=int ;\
-patiences=$patiences=int ;\
-learning_rates=$learning_rates=float ;\
-dropouts=$dropouts=float ;\
-depths=$depths=int ;\
-n_featureses=$n_featureses=int ;\
-data_featureses=$data_featureses=int ;\
-power_featureses=$power_featureses=int ;\
+hyperparams=$hyperparams ;\
 start_grid_test_at_count=$start_grid_test_at_count=int ;\
 partition_train=$partition_train ;\
 devel_train=$devel_train=int ;\
