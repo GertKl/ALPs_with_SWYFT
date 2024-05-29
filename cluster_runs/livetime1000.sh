@@ -49,9 +49,9 @@ account=ec12			# Mostly redundant, should always be ec12
 # -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  - 
 # Physical model configuration 
 
-update_physics=1		# If 0, loads configuration from previous runs, unless this is
+update_physics=0		# If 0, loads configuration from previous runs, unless this is
 				# the first run. 
-save_physics=1
+save_physics=0
 
 
 model="            	      " # Which model to analyze
@@ -130,9 +130,9 @@ param18=" [0.8:3.8]         |    10    | 2.8    |    0    | turb_index  |       
 # Simulation parameters	
 
 
-use_old_sims=0 #/home/gertwk/ALPs_with_SWYFT/cluster_runs/analysis_results/grid_test_power/sim_output/store/store
-save_old_sims=1
-simulate=1
+use_old_sims=1 #/home/gertwk/ALPs_with_SWYFT/cluster_runs/analysis_results/grid_test_power/sim_output/store/store
+save_old_sims=0
+simulate=0
 
 
 n_sim_train=1000000			# Number of simulations for training (split into traiing
@@ -154,7 +154,7 @@ save_old_net=1
 train=1
 
 
-architecture=$FOML3/analysis_scripts/ALP_sim/network_cnn.py
+architecture=$FOML3/analysis_scripts/ALP_sim/network_power.py
 restricted_posterior=0
 
 train_batch_size_1d=512 		# Batch size during training (for 1D and 2D posteriors) 
