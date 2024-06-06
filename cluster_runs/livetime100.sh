@@ -40,7 +40,7 @@ partition_config=normal
 qos_config="devel"
 
 
-run_name="livetime1000"       # Name of the series (of runs), identifying the results folder
+run_name="livetime100"       # Name of the series (of runs), identifying the results folder
 	
 				
 account=ec12			# Mostly redundant, should always be ec12 
@@ -49,7 +49,7 @@ account=ec12			# Mostly redundant, should always be ec12
 # -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  - 
 # Physical model configuration 
 
-update_physics=0		# If 0, loads configuration from previous runs, unless this is
+update_physics=1		# If 0, loads configuration from previous runs, unless this is
 				# the first run. 
 save_physics=0
 
@@ -132,7 +132,7 @@ param18=" [0.8:3.8]         |    10    | 2.8    |    0    | turb_index  |       
 
 use_old_sims=1 #/home/gertwk/ALPs_with_SWYFT/cluster_runs/analysis_results/grid_test_power/sim_output/store/store
 save_old_sims=0
-simulate=0
+simulate=1
 
 
 n_sim_train=1000000			# Number of simulations for training (split into traiing
