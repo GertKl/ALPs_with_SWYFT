@@ -71,7 +71,7 @@ emin="               2e1     " # minimum energy in GeV
 emax="               6e3     " # maximum energy in GeV
   
 
-livetime="          1000     " # Livetime; observation time of telescope in hours.
+livetime="           100     " # Livetime; observation time of telescope in hours.
 
 ALP_seed="          None     " # Seed for random B-field configurations. None if random seed. 
 
@@ -135,14 +135,14 @@ save_old_sims=0
 simulate=1
 
 
-n_sim_train=1000000			# Number of simulations for training (split into traiing
+n_sim_train=1000000		# Number of simulations for training (split into traiing
 					# and testing set automatically)
 n_sim_coverage=100000			# Number of simulations for coverage tests. 
 
 partition_sim=normal			# Usually "normal", since simulation doesn't use GPUs. 
 devel_sim=0				# if yes, jobs run sooner, but max walltime is 2h. 
 
-n_jobs_sim=25				# Number of jobs to share simulation over
+n_jobs_sim=100			# Number of jobs to share simulation over
 max_memory_sim=25			# Total memory per job, in GB, must be integer
 max_time_sim=01-00:00:00		# Max walltime per job ("dd-hh:mm:ss")  
 
