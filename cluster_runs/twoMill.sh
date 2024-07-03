@@ -40,7 +40,7 @@ partition_config=normal
 qos_config="devel"
 
 
-run_name="tenMill"      # Name of the series (of runs), identifying the results folder
+run_name="twoMill"       # Name of the series (of runs), identifying the results folder
 	
 				
 account=ec12			# Mostly redundant, should always be ec12 
@@ -87,7 +87,7 @@ IRF_file="$FOML3/IRFs/CTA/Prod5-North-20deg-AverageAz-4LSTs09MSTs.180000s-v0.1.f
 
 # Model parameter configuration
 
-POI_indices="     2          " # Which parameters to analyze for 
+POI_indices="     0,1,2,3,4    " # Which parameters to analyze for 
 				# (e.g. "0,1,3" for 3 parameters, excluding parameter of index 2;
 				# NOTE: counting ONLY those parameters where the value isn't fixed!)
 
@@ -126,40 +126,57 @@ param18=" [0.8:3.8]         |    10    | 2.8    |    0    | turb_index  |       
 
 							  
 # -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  - 
+# -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  - 
 # Simulation parameters	
 
 
-use_old_sims=1  # $FOML3/cluster_runs/storee/storicist
-save_old_sims=0
-simulate=0
+use_old_sims=1 #/home/gertwk/ALPs_with_SWYFT/cluster_runs/analysis_results/grid_test_power/sim_output/store/store
+save_old_sims=1
+simulate=1
 
 
-n_sim_train=1000000			# Number of simulations for training (split into traiing
+n_sim_train=2000000		# Number of simulations for training (split into traiing
 					# and testing set automatically)
-n_sim_coverage=100000			# Number of simulations for coverage tests. 
+n_sim_coverage=10000			# Number of simulations for coverage tests. 
 
 partition_sim=normal			# Usually "normal", since simulation doesn't use GPUs. 
 devel_sim=0				# if yes, jobs run sooner, but max walltime is 2h. 
 
-n_jobs_sim=225				# Number of jobs to share simulation over
-max_memory_sim=10			# Total memory per job, in GB, must be integer
-max_time_sim=01-00:00:00		# Max walltime per job ("dd-hh:mm:ss")   
-
+n_jobs_sim=100			# Number of jobs to share simulation over
+max_memory_sim=25			# Total memory per job, in GB, must be integer
+max_time_sim=01-00:00:00		# Max walltime per job ("dd-hh:mm:ss")  
 
 # -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  - 
 # Training, inference and validation parameters
 
-use_old_net=0
+use_old_net=1
 save_old_net=1
 train=1
+draw_DRP=1
 
 
 architecture=""
 restricted_posterior=0
 
-train_batch_size_1d=4096 		# Batch size during training (for 1D and 2D posteriors) 
+train_batch_size_1d=1024 		# Batch size during training (for 1D and 2D posteriors) 
 max_epochs=3000
-stopping_patience=20
+
+
+#hyperparams=$learning_rates,$patiences,$dropouts,$depths,$n_featureses,$data_featureses,$power_featureses
+
+hyperparams=" 	--learning_rate (float) : 5e-3  \
+		--stopping_patience (int): 60   \
+		--dropout (float): 0.0 	 \
+		--blocks (int): 2  		 \
+		--features (int): 128  	 \
+"
+#		--data_features (int): 64  	 \
+#		--power_features (int): 4  	 \
+#"	
+
+
+
+start_grid_test_at_count=0
 
 
 gpus=1					# Request GPU from cluster, yes or no
@@ -170,23 +187,14 @@ max_memory_train=50			# Total memory per job, in GB, must be integer
 max_time_train=00-04:30:00		# Max walltime ("dd-hh:mm:ss")
 
 
-# -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  - 
-# Inference 
 
-infer=1				# Whether to do any inference
-infer_1d=1 				# Whether to do inference for 1D posteriors
-infer_2d=0 				# Whether to do inference for 2D posteriors
+DRP_coverage_parameters="      10000	 |   1000  |   0    |   1    |  5     ,\
+				  2	 |    1    |  100   |   1    |  1	 "
 
-n_sample_1d=100000 			# Number of samples from 1D posterior (for histograms)
-n_sample_2d=100000 			# Number of samples from 2D posterior (for histograms)
 
-sample_batch_size_1d=10		# Batch size when sampling. Related to memory-use of
-sample_batch_size_2d=10		# processing units, I think.
 
-plot_1d=1				# Whether to plot 1D histograms
-plot_corner=0				# Whether to plot corner-plot (incl. 2D histogram)
 
-color_truth="        1,0,1           " # Color to indicate the observed value with
+
 
 #-----------------------------------------------------------------------------------------------
 #------------------------------------- Execution -----------------------------------------------
@@ -195,28 +203,7 @@ color_truth="        1,0,1           " # Color to indicate the observed value wi
 # Declaring some derived variables
 results_parent_dir=$PWD/analysis_results
 results_dir=$results_parent_dir/$run_name
-
-# Some helpful lists for the pipeline to know. 
-
-#stopping_states="\
-#FAILED ,\
-#CANCELLED ,\
-#CANCELLED+ ,\
-#COMPLETED ,\
-#TIMEOUT ,\
-#PREEMPTED ,\
-#NODE_FAIL ,\
-#OUT_OF_MEMORY \
-#"
-
-#running_states="\
-#PENDING ,\
-#RUNNING ,\
-#SUSPENDED \
-#"
-
-
-
+n_sim=$(($n_sim_train+$n_sim_coverage))
 
 # Running analysis
 $analysis_scripts_location/run_swyft_analysis.sh \
@@ -260,7 +247,7 @@ save_old_sims=$save_old_sims=int ;\
 simulate=$simulate=int ;\
 n_sim_train=$n_sim_train=int ;\
 n_sim_coverage=$n_sim_coverage=int ;\
-n_sim=$(($n_sim_train+$n_sim_coverage))=int ;\
+n_sim=$n_sim=int ;\
 partition_sim=$partition_sim ;\
 devel_sim=$devel_sim=int ;\
 n_jobs_sim=$n_jobs_sim=int ;\
@@ -271,27 +258,21 @@ save_old_net=$save_old_net=int ;\
 architecture=$architecture ;\
 restricted_posterior=$restricted_posterior=int ;\
 train=$train=int ;\
+draw_DRP=$draw_DRP=int ;\
 train_batch_size_1d=$train_batch_size_1d=int ;\
 max_epochs=$max_epochs=int ;\
-stopping_patience=$stopping_patience=int ;\
+hyperparams=$hyperparams ;\
+start_grid_test_at_count=$start_grid_test_at_count=int ;\
 partition_train=$partition_train ;\
 devel_train=$devel_train=int ;\
 max_memory_train=$max_memory_train ;\
 max_time_train=$max_time_train ;\
-infer=$infer=int ;\
-infer_1d=$infer_1d=int ;\
-infer_2d=$infer_2d=int ;\
-n_sample_1d=$n_sample_1d=int ;\
-n_sample_2d=$n_sample_2d=int ;\
-sample_batch_size_1d=$sample_batch_size_1d=int ;\
-sample_batch_size_2d=$sample_batch_size_2d=int ;\
-plot_1d=$plot_1d=int ;\
-plot_corner=$plot_corner=int ;\
-color_truth=$color_truth=float ;\
+DRP_coverage_parameters=$DRP_coverage_parameters=int ;\
 "
 
 #running_states=$running_states ;\
 #stopping_states=$stopping_states ;\
 # "
+
 
 

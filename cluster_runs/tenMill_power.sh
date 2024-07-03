@@ -40,7 +40,7 @@ partition_config=normal
 qos_config="devel"
 
 
-run_name="grid_test_power_2"      # Name of the series (of runs), identifying the results folder
+run_name="tenMill_power"       # Name of the series (of runs), identifying the results folder
 	
 				
 account=ec12			# Mostly redundant, should always be ec12 
@@ -51,7 +51,7 @@ account=ec12			# Mostly redundant, should always be ec12
 
 update_physics=1		# If 0, loads configuration from previous runs, unless this is
 				# the first run. 
-save_physics=1
+save_physics=0
 
 
 model="            	      " # Which model to analyze
@@ -126,32 +126,33 @@ param18=" [0.8:3.8]         |    10    | 2.8    |    0    | turb_index  |       
 
 							  
 # -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  - 
+# -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  - 
 # Simulation parameters	
 
 
-use_old_sims=/home/gertwk/ALPs_with_SWYFT/cluster_runs/analysis_results/grid_test_power/sim_output/store/store
+use_old_sims=1 #/home/gertwk/ALPs_with_SWYFT/cluster_runs/analysis_results/grid_test_power/sim_output/store/store
 save_old_sims=1
-simulate=0
+simulate=1
 
 
-n_sim_train=1000000			# Number of simulations for training (split into traiing
+n_sim_train=10000000		# Number of simulations for training (split into traiing
 					# and testing set automatically)
-n_sim_coverage=100000			# Number of simulations for coverage tests. 
+n_sim_coverage=10000			# Number of simulations for coverage tests. 
 
 partition_sim=normal			# Usually "normal", since simulation doesn't use GPUs. 
 devel_sim=0				# if yes, jobs run sooner, but max walltime is 2h. 
 
-n_jobs_sim=25				# Number of jobs to share simulation over
+n_jobs_sim=100			# Number of jobs to share simulation over
 max_memory_sim=25			# Total memory per job, in GB, must be integer
-max_time_sim=01-00:00:00		# Max walltime per job ("dd-hh:mm:ss")   
-
+max_time_sim=01-00:00:00		# Max walltime per job ("dd-hh:mm:ss")  
 
 # -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  - 
 # Training, inference and validation parameters
 
-use_old_net=0
+use_old_net=1
 save_old_net=1
-train=1
+train=0
+draw_DRP=0
 
 
 architecture=$FOML3/analysis_scripts/ALP_sim/network_power.py
@@ -160,13 +161,19 @@ restricted_posterior=0
 train_batch_size_1d=512 		# Batch size during training (for 1D and 2D posteriors) 
 max_epochs=3000
 
-learning_rates=5e-3,5e-4
-patiences=60
-dropouts=0,0.1
-depths=2
-n_featureses=128
-data_featureses=128,64,32,8,4
-power_featureses=128,64,32,8,4
+
+#hyperparams=$learning_rates,$patiences,$dropouts,$depths,$n_featureses,$data_featureses,$power_featureses
+
+hyperparams=" 	--learning_rate (float) : 5e-4  \
+		--stopping_patience (int): 60   \
+		--dropout (float): 0.1 	 \
+		--blocks (int): 2  		 \
+		--features (int): 128  	 \
+		--data_features (int): 64  	 \
+		--power_features (int): 4  	 \
+"	
+
+
 
 start_grid_test_at_count=0
 
@@ -177,6 +184,15 @@ devel_train=0				# if yes, jobs run sooner, but max walltime is 2h.
 
 max_memory_train=50			# Total memory per job, in GB, must be integer
 max_time_train=00-04:30:00		# Max walltime ("dd-hh:mm:ss")
+
+
+
+DRP_coverage_parameters="      10000	 |   1000  |   0    |   1    |  5     ,\
+				  2	 |    1    |  100   |   1    |  1	 "
+
+
+
+
 
 
 
@@ -242,24 +258,21 @@ save_old_net=$save_old_net=int ;\
 architecture=$architecture ;\
 restricted_posterior=$restricted_posterior=int ;\
 train=$train=int ;\
+draw_DRP=$draw_DRP=int ;\
 train_batch_size_1d=$train_batch_size_1d=int ;\
 max_epochs=$max_epochs=int ;\
-patiences=$patiences=int ;\
-learning_rates=$learning_rates=float ;\
-dropouts=$dropouts=float ;\
-depths=$depths=int ;\
-n_featureses=$n_featureses=int ;\
-data_featureses=$data_featureses=int ;\
-power_featureses=$power_featureses=int ;\
+hyperparams=$hyperparams ;\
 start_grid_test_at_count=$start_grid_test_at_count=int ;\
 partition_train=$partition_train ;\
 devel_train=$devel_train=int ;\
 max_memory_train=$max_memory_train ;\
 max_time_train=$max_time_train ;\
+DRP_coverage_parameters=$DRP_coverage_parameters=int ;\
 "
 
 #running_states=$running_states ;\
 #stopping_states=$stopping_states ;\
 # "
+
 
 

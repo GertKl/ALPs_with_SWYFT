@@ -132,7 +132,7 @@ param18=" [0.8:3.8]         |    10    | 2.8    |    0    | turb_index  |       
 
 use_old_sims=1 #/home/gertwk/ALPs_with_SWYFT/cluster_runs/analysis_results/grid_test_power/sim_output/store/store
 save_old_sims=0
-simulate=1
+simulate=0
 
 
 n_sim_train=1000000		# Number of simulations for training (split into traiing
@@ -150,8 +150,9 @@ max_time_sim=01-00:00:00		# Max walltime per job ("dd-hh:mm:ss")
 # Training, inference and validation parameters
 
 use_old_net=0
-save_old_net=1
+save_old_net=0
 train=1
+draw_DRP=1
 
 
 architecture=$FOML3/analysis_scripts/ALP_sim/network_power.py
@@ -183,6 +184,14 @@ devel_train=0				# if yes, jobs run sooner, but max walltime is 2h.
 
 max_memory_train=50			# Total memory per job, in GB, must be integer
 max_time_train=00-04:30:00		# Max walltime ("dd-hh:mm:ss")
+
+
+
+DRP_coverage_parameters="      1000	 |   1000  |   0    |   1    |  20     ,\
+				  2	 |    1    |  100   |   1    |  1	 "
+
+
+
 
 
 
@@ -248,6 +257,7 @@ save_old_net=$save_old_net=int ;\
 architecture=$architecture ;\
 restricted_posterior=$restricted_posterior=int ;\
 train=$train=int ;\
+draw_DRP=$draw_DRP=int ;\
 train_batch_size_1d=$train_batch_size_1d=int ;\
 max_epochs=$max_epochs=int ;\
 hyperparams=$hyperparams ;\
@@ -256,6 +266,7 @@ partition_train=$partition_train ;\
 devel_train=$devel_train=int ;\
 max_memory_train=$max_memory_train ;\
 max_time_train=$max_time_train ;\
+DRP_coverage_parameters=$DRP_coverage_parameters=int ;\
 "
 
 #running_states=$running_states ;\

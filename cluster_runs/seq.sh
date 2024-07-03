@@ -1,9 +1,8 @@
 #!/bin/bash
 
-sleep 108000
+sleep 21600
 
-./grid_test.sh
-
+./twoMill_power.sh
 
 
 exit 0
