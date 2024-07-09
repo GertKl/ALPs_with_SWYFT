@@ -40,7 +40,7 @@ partition_config=normal
 qos_config="devel"
 
 
-run_name="test_truncation"       # Name of the series (of runs), identifying the results folder
+run_name="agnostic2"       # Name of the series (of runs), identifying the results folder
 	
 				
 account=ec12			# Mostly redundant, should always be ec12 
@@ -153,7 +153,7 @@ max_time_sim=01-00:00:00		# Max walltime per job ("dd-hh:mm:ss")
 # Training, inference and validation parameters
 
 use_old_net=0
-save_old_net=1
+save_old_net=0
 train=1
 draw_DRP=0
 

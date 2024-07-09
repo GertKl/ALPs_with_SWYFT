@@ -1,8 +1,8 @@
 #!/bin/bash
 
-sleep 21600
+sleep 3600
 
-./twoMill_power.sh
+./agnostic2.sh
 
 
 exit 0
