@@ -102,7 +102,7 @@ param3="  [-10.2:-8.0]      | -8.812   | -8.812  |    1    | Amplitude   |      
 param4="    [0:4]           |   2.11   |  2.11   |    0    | index       |             " # Spectral index of the PWL 
 param5="     300            |   300    |   300   |    0    | E0          |             " # Reference energy (?) E0, In GeV
 param6="   [1 : 4]          |   2.75   |  2.75   |    1    | Ecut        |             " # Cut-off energy Ecut, in GeV 
-param7="    [2:90]          |    25    |   25    |    0    | rms_B       |             " # rms of B field, default = 10.
+param7="    [0:90]          |    25    |   25    |    0    | rms_B       |             " # rms of B field, default = 10.
 param8="   [19:57]          |    39    |   39    |    0    | e_norm      |             " # normalization of electron density, default = 39.
 param9="  [2.0:6.0]         |  4.05    |  4.05   |    0    | e_norm_2    |             " # second normalization of electron density, see Churazov et al. 2003, Eq. 4, default = 4.05
 param10="   500             |   500    |  500    |    0    | cluster_ext |     kpc     " # extension of the cluster, default = 500.
@@ -135,12 +135,12 @@ use_old_truncations=0
 
 
 use_old_sims=0 #/home/gertwk/ALPs_with_SWYFT/cluster_runs/analysis_results/grid_test_power/sim_output/store/store
-save_old_sims=0
+save_old_sims=1
 simulate=1
 
-n_sim_train=10000,50000,100000,1000000,2000000	# Number of simulations for training (split into traiing
+n_sim_train=10_000,10_000,10_000,1_000_000	# Number of simulations for training (split into traiing
 					# and testing set automatically)
-n_sim_coverage=0			# Number of simulations for coverage tests. 
+n_sim_coverage=1_000			# Number of simulations for coverage tests. 
 
 partition_sim=normal			# Usually "normal", since simulation doesn't use GPUs. 
 devel_sim=0				# if yes, jobs run sooner, but max walltime is 2h. 

@@ -40,7 +40,7 @@ partition_config=normal
 qos_config="devel"
 
 
-run_name="test_truncation"       # Name of the series (of runs), identifying the results folder
+run_name="test_truncation2"       # Name of the series (of runs), identifying the results folder
 	
 				
 account=ec12			# Mostly redundant, should always be ec12 
@@ -96,24 +96,24 @@ POI_indices="     0,1,2,3,4,5    " # Which parameters to analyze for
 # 	   Simulated | Observed | Null-hyp.| is log? | name         |  unit 	
 #      -------------------------------------------------------------------
 			
-param1="   [-2 : 4]         |    -6    |   -6    |    1    |    m        |     nev     " # mass m in neV
-param2="   [-2 : 1]         |    -5    |   -5    |    1    |    g        | e-11GeV^{-1}  " # coupling constant g in 10^(-11) /GeV
-param3="  [-10.2:-8.0]      | -8.812   | -8.812  |    1    | Amplitude   |             " # Amplitude of power law, in "TeV-1 cm-2 s-1" 
-param4="    [0:4]           |   2.11   |  2.11   |    0    | index       |             " # Spectral index of the PWL 
-param5="     300            |   300    |   300   |    0    | E0          |             " # Reference energy (?) E0, In GeV
-param6="   [1 : 4]          |   2.75   |  2.75   |    1    | Ecut        |             " # Cut-off energy Ecut, in GeV 
-param7="    [2:90]          |    25    |   25    |    0    | rms_B       |             " # rms of B field, default = 10.
-param8="   [19:57]          |    39    |   39    |    0    | e_norm      |             " # normalization of electron density, default = 39.
-param9="  [2.0:6.0]         |  4.05    |  4.05   |    0    | e_norm_2    |             " # second normalization of electron density, see Churazov et al. 2003, Eq. 4, default = 4.05
-param10="   500             |   500    |  500    |    0    | cluster_ext |     kpc     " # extension of the cluster, default = 500.
-param11=" [40:120]          |    80    |   80    |    0    | e_dens_1    |     kpc     " # electron density parameter, see Churazov et al. 2003, Eq. 4, default = 80.
-param12=" [140:420]         |   280    |  280    |    0    | e_dens_2    |     kpc      " # electron density parameter, see Churazov et al. 2003, Eq. 4, default = 200.
-param13=" [0.6:1.8]         |   1.2    |  1.2    |    0    | e_dens_3    |             " # electron density parameter, see Churazov et al. 2003, Eq. 4, default = 1.2
-param14=" [0.29:0.87]       |  0.58    |  0.58   |    0    | e_dens_4    |             " # electron density parameter, see Churazov et al. 2003, Eq. 4, default = 0.58
-param15=" [-1:3]             |   0.5    |  0.5    |    0    | B_scaling   |             " # scaling of B-field with electron denstiy, default = 0.5
-param16=" [-1.3:-0.22]      |  -0.74   | -0.74   |    1    | Max_turb    |             " # maximum turbulence scale in kpc^-1, taken from A2199 cool-core cluster, see Vacca et al. 2012, default = 0.18
-param17="  [0:1.85]         |  0.95    |   0.95  |    1    | min_turb    |             " # minimum turbulence scale, taken from A2199 cool-core cluster, see Vacca et al. 2012, default = 9. 
-param18=" [0.5:6]           |   2.8    | 2.8     |    0    | turb_index  |             " # turbulence spectral index, taken from A2199 cool-core cluster, see Vacca et al. 2012, default = 2.80 
+param1=" [-2 , 4]      | -6     | -6     | 1 | U               |    m        |     nev      " # mass m in neV
+param2=" [-2 , 1]      | -5     | -5     | 1 | U               |    g        | e-11GeV^{-1} " # coupling constant g in 10^(-11) /GeV
+param3=" [-10.2,-8.0]  | -8.812 | -8.812 | 1 | U               | Amplitude   |              " # Amplitude of power law, in "TeV-1 cm-2 s-1" 
+param4=" [0,4]         | 2.11   | 2.11   | 0 | U               | index       |              " # Spectral index of the PWL 
+param5=" 300           | 300    | 300    | 0 | U               | E0          |              " # Reference energy (?) E0, In GeV
+param6=" [1 , 4]       | 2.75   | 2.75   | 1 | U               | Ecut        |              " # Cut-off energy Ecut, in GeV 
+param7=" [-6,2]        | 25     | 25     | 1 | N(1.28,0.21)    | rms_B       |              " # rms of B field, default = 10.
+param8=" [19,57]       | 39     | 39     | 0 | U               | e_norm      |              " # normalization of electron density, default = 39.
+param9=" [2.0,6.0]     | 4.05   | 4.05   | 0 | U               | e_norm_2    |              " # second normalization of electron density, see Churazov et al. 2003, Eq. 4, default = 4.05
+param10=" 500          | 500    | 500    | 0 | U               | cluster_ext |     kpc      " # extension of the cluster, default = 500.
+param11=" [40,120]     | 80     | 80     | 0 | U               | e_dens_1    |     kpc      " # electron density parameter, see Churazov et al. 2003, Eq. 4, default = 80.
+param12=" [140,420]    | 280    | 280    | 0 | U               | e_dens_2    |     kpc      " # electron density parameter, see Churazov et al. 2003, Eq. 4, default = 200.
+param13=" [0.6,1.8]    | 1.2    | 1.2    | 0 | U               | e_dens_3    |              " # electron density parameter, see Churazov et al. 2003, Eq. 4, default = 1.2
+param14=" [0.29,0.87]  | 0.58   | 0.58   | 0 | U               | e_dens_4    |              " # electron density parameter, see Churazov et al. 2003, Eq. 4, default = 0.58
+param15=" [-1,3]       | 0.5    | 0.5    | 0 | U               | B_scaling   |              " # scaling of B-field with electron denstiy, default = 0.5
+param16=" [-1.3,-0.22] | -0.74  | -0.74  | 1 | U               | Max_turb    |              " # maximum turbulence scale in kpc^-1, taken from A2199 cool-core cluster, see Vacca et al. 2012, default = 0.18
+param17=" [0,1.85]     | 0.95   | 0.95   | 1 | U               | min_turb    |              " # minimum turbulence scale, taken from A2199 cool-core cluster, see Vacca et al. 2012, default = 9. 
+param18=" [0.5,6]      |  2.8   | 2.8    | 0 | U               | turb_index  |              " # turbulence spectral index, taken from A2199 cool-core cluster, see Vacca et al. 2012, default = 2.80 
 
 
 
@@ -138,7 +138,7 @@ use_old_sims=0 #/home/gertwk/ALPs_with_SWYFT/cluster_runs/analysis_results/grid_
 save_old_sims=0
 simulate=1
 
-n_sim_train=10000,50000,100000,1000000,2000000	# Number of simulations for training (split into traiing
+n_sim_train=100,100	# Number of simulations for training (split into traiing
 					# and testing set automatically)
 n_sim_coverage=0			# Number of simulations for coverage tests. 
 
@@ -241,8 +241,8 @@ ALP_seed=$ALP_seed ;\
 floor_exp=$floor_exp=float ;\
 floor_obs=$floor_obs=float ;\
 IRF_file=$IRF_file ;\
-model_params=$param1,$param2,$param3,$param4,$param5,$param6,$param7,$param8,$param9,$param10,\
-$param11,$param12,$param13,$param14,$param15,$param16,$param17,$param18 ;\
+model_params=$param1+$param2+$param3+$param4+$param5+$param6+$param7+$param8+$param9+$param10+\
+$param11+$param12+$param13+$param14+$param15+$param16+$param17+$param18 ;\
 n_truncations=$n_truncations=int ;\
 use_old_truncations=$use_old_truncations=int ;\
 use_old_sims=$use_old_sims ;\
