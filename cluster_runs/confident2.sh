@@ -128,8 +128,8 @@ param18=" 2.8          | 2.8    | 1.97   | 0 | N(0.29,0.08)    | turb_index  |  
 #-----------------------------------------------------------------------------------------------
 
 
-n_truncations=2
-use_old_truncations=0
+n_truncations=3
+use_old_truncations=1
 							  
 
 # -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  - 
@@ -137,10 +137,10 @@ use_old_truncations=0
 
 
 use_old_sims=0 #/home/gertwk/ALPs_with_SWYFT/cluster_runs/analysis_results/grid_test_power/sim_output/store/store
-save_old_sims=0
+save_old_sims=1
 simulate=1
 
-n_sim_train=10_000,10_000,1_000_000	# Number of simulations for training (split into traiing
+n_sim_train=1_000_000	# Number of simulations for training (split into traiing
 					# and testing set automatically)
 n_sim_coverage=10_000			# Number of simulations for coverage tests. 
 
