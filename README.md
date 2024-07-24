@@ -36,7 +36,9 @@ To install SWYFT, write:
 conda acivate <your_env_name>
 cd ALPs_with_SWYFT/swyft
 pip install -e .
-conda install wandb
+pip install wandb
+wandb login
+<paste your wandb API key if prompted>
 ```
 
 # Running the analysis
