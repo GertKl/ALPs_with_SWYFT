@@ -1,4 +1,4 @@
-# ALPs_with_SWYFT
+# Framework for performing Neural Ratio Estimation (NRE) for ALP searches (using the SWYFT-package)
 
 # Setup
 
