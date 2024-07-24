@@ -34,7 +34,7 @@ To install SWYFT, write:
 
 ```
 conda acivate <your_env_name>
-cd <path_to_SWYFT_clone>
+cd ALPs_with_SWYFT/swyft
 pip install -e .
 conda install wandb
 ```
