@@ -33,27 +33,32 @@ analysis_scripts_location=$FOML3/analysis_scripts/ALP_sim	# Location of /analysi
 # -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  - 
 # Technical
 
-update_config=1
+update_config=1              # Whether to update the configuration parameters on re-run or not. 
 
-update_config_on_cluster=0
-max_memory_config=5
+update_config_on_cluster=0   # Whether to update the configuration parameters using the cluster
+max_memory_config=5	      # queueing system (if $on_cluster=fox), or without. 
 max_time_config=00-00:00:05
 partition_config=normal
 qos_config="devel"
 
 
-run_name="agnostic3"       # Name of the series (of runs), identifying the results folder
+run_name="agnostic3"       # Name of the series (of runs), identifying the results folder. If
+			    # this isn't changed on re-run, results will be over-written, or
+			    # added to, depending on further configuration. 
 	
 				
-account=ec12			# Mostly redundant, should always be ec12 
+account=ec12	           # Mostly redundant, should always be ec12. 
 
 
 # -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  - 
 # Physical model configuration 
 
-update_physics=1		# If 0, loads configuration from previous runs, unless this is
+update_physics=1		# If 0, loads physics-related configuration (everything from here
+				# to "Technical parameters") from previous runs, unless this is
 				# the first run. 
-save_physics=1
+
+save_physics=1                 # if $update_physics=1, $save_physics=0 results in the deletion
+				# of the old configuration on re-run, rather than archiving. 
 
 
 model="            	      " # Which model to analyze
@@ -94,8 +99,9 @@ POI_indices="     0,1,2,3,4    " # Which parameters to analyze for
 				# NOTE: counting ONLY those parameters where the value isn't fixed!)
 
 
+# Model parameters:
 
-# 	   Simulated | Observed | Null-hyp.| is log? | name         |  unit 	
+# 	 Bounds         | Obs.   |Null-hyp|log?|    prior form  |name         |  unit 	
 #      -------------------------------------------------------------------
 			
 param1=" [-2 , 4]      | -6     | -6     | 1 | U               |    m        |     nev      " # mass m in neV
@@ -130,46 +136,57 @@ param18=" [0,6]        | 1.97   | 1.97   | 0 | U               | turb_index  |  
 #-----------------------------------------------------------------------------------------------
 
 
-n_truncations=2
-use_old_truncations=0
+n_truncations=2			# How many times to truncate the priors, and re-train
+					# the neural network. 
+use_old_truncations=0                 # Whether to remember previous truncations on re-run. 
 							  
 
 # -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  - 
 # Simulation parameters	
 
 
-use_old_sims=0 #/home/gertwk/ALPs_with_SWYFT/cluster_runs/analysis_results/grid_test_power/sim_output/store/store
-save_old_sims=0
-simulate=1
+use_old_sims=0                        # Whether to load simulations from previous run on re-run (=1),
+				       # or from a separate place (=path), or start from scratch (=0).
+save_old_sims=0		       # If 0, old simulations are deleted on re-run, rather than
+				       # archived, unless $use_old_sims=1.
+simulate=1                            # Whether or not to simulate at all. 
 
 n_sim_train=10_000,10_000,1_000_000	# Number of simulations for training (split into traiing
-					# and testing set automatically)
+					# and testing set automatically). Comma-separated values
+					# indicate different numbers of sims for corresponding
+					# truncaitons. 
+					
 n_sim_coverage=10_000			# Number of simulations for coverage tests. 
 
 partition_sim=normal			# Usually "normal", since simulation doesn't use GPUs. 
 devel_sim=0				# if yes, jobs run sooner, but max walltime is 2h. 
 
-n_jobs_sim=100			# Number of jobs to share simulation over
+n_jobs_sim=100			        # Number of jobs to share simulation over
 max_memory_sim=25			# Total memory per job, in GB, must be integer
 max_time_sim=01-00:00:00		# Max walltime per job ("dd-hh:mm:ss")  
 
 # -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  - 
 # Training, inference and validation parameters
 
-use_old_net=0
-save_old_net=1
-train=1
-draw_DRP=0
+use_old_net=0                         # Whether to load simulations from previous run on re-run (=1),
+				       # or start from scratch (=0).
+save_old_net=1                        # If 0, old net is deleted on re-run, rather than
+				       # archived, unless $use_old_net=1.
+train=1                               # Whether to train at all. 
+draw_DRP=0                            # Whether to dra samples for use during DRP-validation. 
 
 
-architecture=$FOML3/analysis_scripts/ALP_sim/network_power.py
-restricted_posterior=0
+architecture=$FOML3/analysis_scripts/ALP_sim/network_power.py           # Which architecture-defining 
+									   # file to import.  
+restricted_posterior=0                 # 0: inference for 1- and 2-dimensional posteriors.
+                                       # 1: Only 1D posteriors. 2: Only 2D posteriors. 
 
 train_batch_size_1d=512 		# Batch size during training (for 1D and 2D posteriors) 
-max_epochs=3000
+max_epochs=3000  
 
-
-hyperparams=" 	--learning_rate (float) : 5e-3  \
+                                       # Hyperparameters for neural network (new ones can be defined
+                                       # analogously). Comma-separated variables imply grid-testing. 
+hyperparams=" 	--learning_rate (float) : 5e-3  \ 
 		--stopping_patience (int): 30   \
 		--blocks (int): 2		 \
 		--features (int): 128 	 \
@@ -180,7 +197,7 @@ hyperparams=" 	--learning_rate (float) : 5e-3  \
 
 
 
-start_grid_test_at_count=0
+start_grid_test_at_count=0            # re-start a grid test at that grid point number
 
 
 gpus=1					# Request GPU from cluster, yes or no
@@ -191,7 +208,7 @@ max_memory_train=50			# Total memory per job, in GB, must be integer
 max_time_train=00-04:30:00		# Max walltime ("dd-hh:mm:ss")
 
 
-
+                                      # under implementation
 DRP_coverage_parameters="      10000	 |   1000  |   0    |   1    |  5     ,\
 				  2	 |    1    |  100   |   1    |  1	 "
 
