@@ -33,6 +33,7 @@ conda env create --file env_noswyft.yml --name <your_env_name>
 To install SWYFT, write:
 
 ```
+conda acivate <your_env_name>
 cd <path_to_SWYFT_clone>
 pip install -e .
 ```
