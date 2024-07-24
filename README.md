@@ -6,7 +6,7 @@ NOTE: The framework is developed for private use, so incompatibilities with diff
 
 ### Cloning from Git
 
-Open a terminal, navigate to your home directory and type (assuming that you have git installed):
+Open a terminal, navigate to your home directory and type (assuming that you have git installed, I use v2.43.5):
 
 ```
 git clone --recurse-submodules https://github.com/GertKl/ALPs_with_SWYFT.git
