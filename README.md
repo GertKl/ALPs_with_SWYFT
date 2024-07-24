@@ -1,6 +1,6 @@
 # Framework for performing Neural Ratio Estimation (NRE) for Axion-like particle-searches (using the SWYFT-package)
 
-NOTE: The framework is developed for private use, so incompatibilities with different systems are to be expected. However, it usually runs well on linux. 
+NOTE: The framework is developed for private use, so incompatibilities with different systems are to be expected. However, the main code usually runs well on linux if following the instructions below. 
 
 # Setup
 
