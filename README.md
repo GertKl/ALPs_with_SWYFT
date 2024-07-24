@@ -27,7 +27,7 @@ Install conda (if you haven't already), and create a conda environment from the 
 
 ``` 
 conda activate
-conda env create --file env_noswyft_wo_wandb.yml --name <your_env_name>
+conda env create --file env_noswyft_wo_wandb.yaml --name <your_env_name>
 ```
 
 To install SWYFT, write:
