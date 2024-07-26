@@ -42,7 +42,7 @@ partition_config=normal
 qos_config="devel"
 
 
-run_name="test2"       # Name of the series (of runs), identifying the results folder. If
+run_name="flare0_semi_informed"       # Name of the series (of runs), identifying the results folder. If
 			    # this isn't changed on re-run, results will be over-written, or
 			    # added to, depending on further configuration. 
 	
@@ -112,18 +112,18 @@ param4=" [0,4]         | 2.11   | 2.11   | 0 | U               | index       |  
 param5=" 300           | 300    | 300    | 0 | U               | E0          |              " # Reference energy (?) E0, In GeV
 param6=" [1 , 4]       | 2.75   | 2.75   | 1 | U               | Ecut        |              " # Cut-off energy Ecut, in GeV 
 
-param7=" [0,165]       | 25     | 25     | 0 | U               | rms_B       |              " # rms of B field, default = 10.
-param8=" [0,191]       | 46     | 46     | 0 | U               | e_norm      |              " # normalization of electron density, default = 39.
-param9=" [0,18]        | 4.05   | 4.05   | 0 | U               | e_norm_2    |              " # second normalization of electron density, see Churazov et al. 2003, Eq. 4, default = 4.05
+param7=" [3.8,165]     | 25     | 25     | 0 | U               | rms_B       |              " # rms of B field, default = 10.
+param8=" [34,61]       | 46     | 46     | 0 | U               | e_norm      |              " # normalization of electron density, default = 39.
+param9=" [2.7,6.4]     | 4.05   | 4.05   | 0 | U               | e_norm_2    |              " # second normalization of electron density, see Churazov et al. 2003, Eq. 4, default = 4.05
 param10=" [300,1000]   | 500    | 500    | 0 | U               | cluster_ext |     kpc      " # extension of the cluster, default = 500.
-param11=" [0,238]      | 57     | 57     | 0 | U               | e_dens_1    |     kpc      " # electron density parameter, see Churazov et al. 2003, Eq. 4, default = 80.
-param12=" [0,1122]     | 268    | 268    | 0 | U               | e_dens_2    |     kpc      " # electron density parameter, see Churazov et al. 2003, Eq. 4, default = 200.
-param13=" [0,5]        | 1.2    | 1.2    | 0 | U               | e_dens_3    |              " # electron density parameter, see Churazov et al. 2003, Eq. 4, default = 1.2
-param14=" [0.29,0.87]  | 0.69   | 0.69   | 0 | U               | e_dens_4    |              " # electron density parameter, see Churazov et al. 2003, Eq. 4, default = 0.58
-param15=" [0,3]        | 0.62   | 0.62   | 0 | U               | B_scaling   |              " # scaling of B-field with electron denstiy, default = 0.5
-param16=" [-1.3,0.39]  | -0.41  | -0.41  | 1 | U               | Max_turb    |              " # maximum turbulence scale in kpc^-1, taken from A2199 cool-core cluster, see Vacca et al. 2012, default = 0.18
-param17=" [0,1.85]     | 0.93   | 0.93   | 1 | U               | min_turb    |              " # minimum turbulence scale, taken from A2199 cool-core cluster, see Vacca et al. 2012, default = 9. 
-param18=" [0,6]        | 1.97   | 1.97   | 0 | U               | turb_index  |              " # turbulence spectral index, taken from A2199 cool-core cluster, see Vacca et al. 2012, default = 2.80 
+param11=" [25,129]     | 57     | 57     | 0 | U               | e_dens_1    |     kpc      " # electron density parameter, see Churazov et al. 2003, Eq. 4, default = 80.
+param12=" [90,797]     | 268    | 268    | 0 | U               | e_dens_2    |     kpc      " # electron density parameter, see Churazov et al. 2003, Eq. 4, default = 200.
+param13=" [0.6,2.4]    | 1.2    | 1.2    | 0 | U               | e_dens_3    |              " # electron density parameter, see Churazov et al. 2003, Eq. 4, default = 1.2
+param14=" [0.38,1.24]  | 0.69   | 0.69   | 0 | U               | e_dens_4    |              " # electron density parameter, see Churazov et al. 2003, Eq. 4, default = 0.58
+param15=" [0.13,3.04]  | 0.62   | 0.62   | 0 | U               | B_scaling   |              " # scaling of B-field with electron denstiy, default = 0.5
+param16=" [-1.22,0.39] | -0.41  | -0.41  | 1 | U               | Max_turb    |              " # maximum turbulence scale in kpc^-1, taken from A2199 cool-core cluster, see Vacca et al. 2012, default = 0.18
+param17=" [0.62,1.24]  | 0.93   | 0.93   | 1 | U               | min_turb    |              " # minimum turbulence scale, taken from A2199 cool-core cluster, see Vacca et al. 2012, default = 9. 
+param18=" [1.17,3.30]  | 1.97   | 1.97   | 0 | U               | turb_index  |              " # turbulence spectral index, taken from A2199 cool-core cluster, see Vacca et al. 2012, default = 2.80  
 
 
 

@@ -42,7 +42,7 @@ partition_config=normal
 qos_config="devel"
 
 
-run_name="test2"       # Name of the series (of runs), identifying the results folder. If
+run_name="flare0_agnostic"       # Name of the series (of runs), identifying the results folder. If
 			    # this isn't changed on re-run, results will be over-written, or
 			    # added to, depending on further configuration. 
 	
