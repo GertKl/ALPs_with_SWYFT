@@ -23,7 +23,7 @@ conda_env=swyft4-dev			# Name of conda-env. with the necessary installations
 parent_directory=$FOML3 					# Directory containing /cluster_runs,
 								# per default called ALPs_with_SWYFT
 
-analysis_scripts_location=$FOML3/analysis_scripts/ALP_sim  	# Location of /analysis_scripts
+analysis_scripts_location=$FOML3/analysis_scripts/ALP_sim	# Location of /analysis_scripts
 
 
 #-----------------------------------------------------------------------------------------------
@@ -33,31 +33,31 @@ analysis_scripts_location=$FOML3/analysis_scripts/ALP_sim  	# Location of /analy
 # -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  - 
 # Technical
 
-update_config=" 1 "          # Whether to update the configuration parameters on re-run or not. 
+update_config=1              # Whether to update the configuration parameters on re-run or not. 
 
-update_config_on_cluster=" 0 "   # Whether to update the configuration parameters using the cluster
-max_memory_config=" 5 "	  # queueing system (if $on_cluster=fox), or without. 
-max_time_config=" 00-00:00:05 "
-partition_config=" normal "
-qos_config=" devel "
+update_config_on_cluster=0   # Whether to update the configuration parameters using the cluster
+max_memory_config=5	      # queueing system (if $on_cluster=fox), or without. 
+max_time_config=00-00:00:05
+partition_config=normal
+qos_config="devel"
 
 
-run_name="flare0_confident3"       # Name of the series (of runs), identifying the results folder. If
+run_name="flare0_confident2"       # Name of the series (of runs), identifying the results folder. If
 			    # this isn't changed on re-run, results will be over-written, or
 			    # added to, depending on further configuration. 
 	
 				
-account=" ec12 "           # Mostly redundant, should always be ec12. 
+account=ec12	           # Mostly redundant, should always be ec12. 
 
 
 # -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  - 
 # Physical model configuration 
 
-update_physics=" 1 "		# If 0, loads physics-related configuration (everything from here
+update_physics=1		# If 0, loads physics-related configuration (everything from here
 				# to "Technical parameters") from previous runs, unless this is
 				# the first run. 
 
-save_physics=" 0 "             # if $update_physics=1, $save_physics=0 results in the deletion
+save_physics=0                 # if $update_physics=1, $save_physics=0 results in the deletion
 				# of the old configuration on re-run, rather than archiving. 
 
 
@@ -107,27 +107,28 @@ POI_indices="     0,1,2,3,4    " # Which parameters to analyze for
 param1=" [-2 , 4]      | -6     | -6     | 1 | U               |    m        |     nev      " # mass m in neV
 param2=" [-2 , 1]      | -5     | -5     | 1 | U               |    g        | e-11GeV^{-1} " # coupling constant g in 10^(-11) /GeV
 
-param3=" [-10.2,-8.0]  | -8.812 | -8.812 | 1 | U               | Amplitude   |              " # Amplitude of power law, in "TeV-1 cm-2 s-1" 
+param3=" [6.3e-11,1e-8]| 1.54e-9| 1.54e-9| 0 | U               | Amplitude   |              " # Amplitude of power law, in "TeV-1 cm-2 s-1" 
 param4=" [0,4]         | 2.11   | 2.11   | 0 | U               | index       |              " # Spectral index of the PWL 
 param5=" 300           | 300    | 300    | 0 | U               | E0          |              " # Reference energy (?) E0, In GeV
-param6=" [1 , 4]       | 2.75   | 2.75   | 1 | U               | Ecut        |              " # Cut-off energy Ecut, in GeV 
+param6=" [10 , 10000]  | 560    | 560    | 0 | U               | Ecut        |              " # Cut-off energy Ecut, in GeV 
 
-param7=" 10            | 10     | 25     | 0 | N(1.4,0.28)     | rms_B       |              " # rms of B field, default = 10.
-param8=" 39            | 39     | 46     | 0 | N(1.66,0.04)    | e_norm      |              " # normalization of electron density, default = 39.
-param9=" 4.05          | 4.05   | 4.05   | 0 | N(0.62,0.06)    | e_norm_2    |              " # second normalization of electron density, see Churazov et al. 2003, Eq. 4, default = 4.05
+param7=" 25            | 25     | 25     | 0 | U               | rms_B       |              " # rms of B field, default = 10.
+param8=" 46            | 46     | 46     | 0 | U               | e_norm      |              " # normalization of electron density, default = 39.
+param9=" 4.05          | 4.05   | 4.05   | 0 | U               | e_norm_2    |              " # second normalization of electron density, see Churazov et al. 2003, Eq. 4, default = 4.05
 param10=" 500          | 500    | 500    | 0 | U               | cluster_ext |     kpc      " # extension of the cluster, default = 500.
-param11=" 80           | 80     | 57     | 0 | N(1.76,0.12)    | e_dens_1    |     kpc      " # electron density parameter, see Churazov et al. 2003, Eq. 4, default = 80.
-param12=" 280          | 280    | 268    | 0 | N(2.43,0.16)    | e_dens_2    |     kpc      " # electron density parameter, see Churazov et al. 2003, Eq. 4, default = 200.
-param13=" 1.2          | 1.2    | 1.2    | 0 | N(0.08,0.10)    | e_dens_3    |              " # electron density parameter, see Churazov et al. 2003, Eq. 4, default = 1.2
-param14=" 0.58         | 0.58   | 0.69   | 0 | N(-0.16,0.09)   | e_dens_4    |              " # electron density parameter, see Churazov et al. 2003, Eq. 4, default = 0.58
-param15=" 0.5          | 0.5    | 0.62   | 0 | N(-0.21,0.23)   | B_scaling   |              " # scaling of B-field with electron denstiy, default = 0.5
-param16=" 0.18         | 0.18   | 0.39   | 0 | N(-0.41,0.27)   | Max_turb    |              " # maximum turbulence scale in kpc^-1, taken from A2199 cool-core cluster, see Vacca et al. 2012, default = 0.18
-param17=" 8.98         | 8.98   | 8.51   | 0 | N(0.93,0.10)    | min_turb    |              " # minimum turbulence scale, taken from A2199 cool-core cluster, see Vacca et al. 2012, default = 9. 
-param18=" 2.8          | 2.8    | 1.97   | 0 | N(0.29,0.08)    | turb_index  |              " # turbulence spectral index, taken from A2199 cool-core cluster, see Vacca et al. 2012, default = 2.80 
+param11=" 57           | 57     | 57     | 0 | U               | e_dens_1    |     kpc      " # electron density parameter, see Churazov et al. 2003, Eq. 4, default = 80.
+param12=" 268          | 268    | 268    | 0 | U               | e_dens_2    |     kpc      " # electron density parameter, see Churazov et al. 2003, Eq. 4, default = 200.
+param13=" 1.2          | 1.2    | 1.2    | 0 | U               | e_dens_3    |              " # electron density parameter, see Churazov et al. 2003, Eq. 4, default = 1.2
+param14=" 0.69         | 0.69   | 0.69   | 0 | U               | e_dens_4    |              " # electron density parameter, see Churazov et al. 2003, Eq. 4, default = 0.58
+param15=" 0.62         | 0.62   | 0.62   | 0 | U               | B_scaling   |              " # scaling of B-field with electron denstiy, default = 0.5
+param16=" -0.41        | -0.41  | -0.41  | 1 | U               | Max_turb    |              " # maximum turbulence scale in kpc^-1, taken from A2199 cool-core cluster, see Vacca et al. 2012, default = 0.18
+param17=" 0.93         | 0.93   | 0.93   | 1 | U               | min_turb    |              " # minimum turbulence scale, taken from A2199 cool-core cluster, see Vacca et al. 2012, default = 9. 
+param18=" 1.97         | 1.97   | 1.97   | 0 | U               | turb_index  |              " # turbulence spectral index, taken from A2199 cool-core cluster, see Vacca et al. 2012, default = 2.80 
 
 
 
-obs_seed=" 0 "			# Random seed for statistical fluctuations of mock observation
+
+obs_seed=0			# Random seed for statistical fluctuations of mock observation
 
 
 
@@ -137,57 +138,57 @@ obs_seed=" 0 "			# Random seed for statistical fluctuations of mock observation
 #-----------------------------------------------------------------------------------------------
 
 
-n_truncations=" 3 "			# How many times to truncate the priors, and re-train
+n_truncations=4			# How many times to truncate the priors, and re-train
 					# the neural network. 
-use_old_truncations=" 0 "                 # Whether to remember previous truncations on re-run. 
+use_old_truncations=0                 # Whether to remember previous truncations on re-run. 
 							  
 
 # -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  - 
 # Simulation parameters	
 
 
-use_old_sims=" 0 "                    # Whether to load simulations from previous run on re-run (=1),
+use_old_sims=0                        # Whether to load simulations from previous run on re-run (=1),
 				       # or from a separate place (=path), or start from scratch (=0).
-save_old_sims=" 0 "		       # If 0, old simulations are deleted on re-run, rather than
+save_old_sims=0		       # If 0, old simulations are deleted on re-run, rather than
 				       # archived, unless $use_old_sims=1.
-simulate=" 1 "                        # Whether or not to simulate at all. 
+simulate=1                            # Whether or not to simulate at all. 
 
-n_sim_train=" 10_000, 10_000, 100_000, 1_000_000  "    # Number of simulations for training (split into traiing
+n_sim_train=100_000, 100_00, 1_000_000, 1_000_000, 2_000_000              	# Number of simulations for training (split into traiing
 					# and testing set automatically). Comma-separated values
 					# indicate different numbers of sims for corresponding
 					# truncaitons. 
 					
-n_sim_coverage=" 10_000 "		# Number of simulations for coverage tests. 
+n_sim_coverage=10_000			# Number of simulations for coverage tests. 
 
-n_sim_explim=" 1_000 "                # Number of simulations for expected limits
+n_sim_explim=10_000                     # Number of simulations for expected limits
 
-n_prior_samples=" 400_000 "          # Number of prior samples to draw for posterior histograms
+n_prior_samples=1_000_000               # Number of prior samples to draw for posterior histograms
 
-partition_sim=" normal "		# Usually "normal", since simulation doesn't use GPUs. 
-devel_sim=" 0 "		 	# if yes, jobs run sooner, but max walltime is 2h. 
+partition_sim=normal			# Usually "normal", since simulation doesn't use GPUs. 
+devel_sim=0				# if yes, jobs run sooner, but max walltime is 2h. 
 
-n_jobs_sim=" 100 "		        # Number of jobs to share simulation over
-max_memory_sim=" 25 "			# Total memory per job, in GB, must be integer
-max_time_sim=" 01-00:00:00 "		# Max walltime per job ("dd-hh:mm:ss")  
+n_jobs_sim=100			        # Number of jobs to share simulation over
+max_memory_sim=25			# Total memory per job, in GB, must be integer
+max_time_sim=01-00:00:00		# Max walltime per job ("dd-hh:mm:ss")  
 
 # -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  - 
 # Training, inference and validation parameters
 
-use_old_net=" 0 "                     # Whether to load simulations from previous run on re-run (=1),
+use_old_net=0                         # Whether to load simulations from previous run on re-run (=1),
 				       # or start from scratch (=0).
-save_old_net=" 1 "                    # If 0, old net is deleted on re-run, rather than
+save_old_net=1                        # If 0, old net is deleted on re-run, rather than
 				       # archived, unless $use_old_net=1.
-train=" 1 "                           # Whether to train at all. 
-draw_DRP=" 0 "                        # Whether to dra samples for use during DRP-validation. 
+train=1                               # Whether to train at all. 
+draw_DRP=0                            # Whether to dra samples for use during DRP-validation. 
 
 
-architecture=" $FOML3/analysis_scripts/ALP_sim/network_power.py "         # Which architecture-defining 
+architecture=$FOML3/analysis_scripts/ALP_sim/network_power.py           # Which architecture-defining 
 									   # file to import.  
-restricted_posterior=" 0 "             # 0: inference for 1- and 2-dimensional posteriors.
+restricted_posterior=0                 # 0: inference for 1- and 2-dimensional posteriors.
                                        # 1: Only 1D posteriors. 2: Only 2D posteriors. 
 
-train_batch_size_1d=" 512 "		# Batch size during training (for 1D and 2D posteriors) 
-max_epochs=" 3000 "  
+train_batch_size_1d=512 		# Batch size during training (for 1D and 2D posteriors) 
+max_epochs=3000  
 
 
                                        # Hyperparameters for neural network (new ones can be defined
@@ -203,15 +204,15 @@ hyperparams=" 	--learning_rate (float) : 5e-3  \
 
 
 
-start_grid_test_at_count=" 0 "         # re-start a grid test at that grid point number
+start_grid_test_at_count=0            # re-start a grid test at that grid point number
 
 
-gpus=" 1 "   				# Request GPU from cluster, yes or no
-partition_train=" accel "  		# "normal", "accel" (if GPU), "accel_long" (GPU & time>1d)
-devel_train=" 0 "			# if yes, jobs run sooner, but max walltime is 2h.
+gpus=1					# Request GPU from cluster, yes or no
+partition_train=accel			# "normal", "accel" (if GPU), "accel_long" (GPU & time>1d)
+devel_train=0				# if yes, jobs run sooner, but max walltime is 2h.
 
-max_memory_train=" 50 "		# Total memory per job, in GB, must be integer
-max_time_train=" 00-04:30:00 "	# Max walltime ("dd-hh:mm:ss")
+max_memory_train=50			# Total memory per job, in GB, must be integer
+max_time_train=00-04:30:00		# Max walltime ("dd-hh:mm:ss")
 
 
                                       # under implementation

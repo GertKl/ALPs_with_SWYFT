@@ -23,7 +23,7 @@ conda_env=swyft4-dev			# Name of conda-env. with the necessary installations
 parent_directory=$FOML3 					# Directory containing /cluster_runs,
 								# per default called ALPs_with_SWYFT
 
-analysis_scripts_location=$FOML3/analysis_scripts/ALP_sim	# Location of /analysis_scripts
+analysis_scripts_location=$FOML3/analysis_scripts/ALP_sim  	# Location of /analysis_scripts
 
 
 #-----------------------------------------------------------------------------------------------
@@ -33,13 +33,13 @@ analysis_scripts_location=$FOML3/analysis_scripts/ALP_sim	# Location of /analysi
 # -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  - 
 # Technical
 
-update_config=1              # Whether to update the configuration parameters on re-run or not. 
+update_config=" 1 "          # Whether to update the configuration parameters on re-run or not. 
 
-update_config_on_cluster=0   # Whether to update the configuration parameters using the cluster
-max_memory_config=5	      # queueing system (if $on_cluster=fox), or without. 
-max_time_config=00-00:00:05
-partition_config=normal
-qos_config="devel"
+update_config_on_cluster=" 0 "   # Whether to update the configuration parameters using the cluster
+max_memory_config=" 5 "	  # queueing system (if $on_cluster=fox), or without. 
+max_time_config=" 00-00:00:05 "
+partition_config=" normal "
+qos_config=" devel "
 
 
 run_name="flare0_semi_informed"       # Name of the series (of runs), identifying the results folder. If
@@ -47,17 +47,17 @@ run_name="flare0_semi_informed"       # Name of the series (of runs), identifyin
 			    # added to, depending on further configuration. 
 	
 				
-account=ec12	           # Mostly redundant, should always be ec12. 
+account=" ec12 "           # Mostly redundant, should always be ec12. 
 
 
 # -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  - 
 # Physical model configuration 
 
-update_physics=1		# If 0, loads physics-related configuration (everything from here
+update_physics=" 1 "		# If 0, loads physics-related configuration (everything from here
 				# to "Technical parameters") from previous runs, unless this is
 				# the first run. 
 
-save_physics=0                 # if $update_physics=1, $save_physics=0 results in the deletion
+save_physics=" 0 "             # if $update_physics=1, $save_physics=0 results in the deletion
 				# of the old configuration on re-run, rather than archiving. 
 
 
@@ -127,7 +127,7 @@ param18=" [1.17,3.30]  | 1.97   | 1.97   | 0 | U               | turb_index  |  
 
 
 
-obs_seed=0			# Random seed for statistical fluctuations of mock observation
+obs_seed=" 0 "			# Random seed for statistical fluctuations of mock observation
 
 
 
@@ -137,57 +137,57 @@ obs_seed=0			# Random seed for statistical fluctuations of mock observation
 #-----------------------------------------------------------------------------------------------
 
 
-n_truncations=3			# How many times to truncate the priors, and re-train
+n_truncations=" 3 "			# How many times to truncate the priors, and re-train
 					# the neural network. 
-use_old_truncations=0                 # Whether to remember previous truncations on re-run. 
+use_old_truncations=" 0 "                 # Whether to remember previous truncations on re-run. 
 							  
 
 # -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  - 
 # Simulation parameters	
 
 
-use_old_sims=0                        # Whether to load simulations from previous run on re-run (=1),
+use_old_sims=" 0 "                    # Whether to load simulations from previous run on re-run (=1),
 				       # or from a separate place (=path), or start from scratch (=0).
-save_old_sims=0		       # If 0, old simulations are deleted on re-run, rather than
+save_old_sims=" 0 "		       # If 0, old simulations are deleted on re-run, rather than
 				       # archived, unless $use_old_sims=1.
-simulate=1                            # Whether or not to simulate at all. 
+simulate=" 1 "                        # Whether or not to simulate at all. 
 
-n_sim_train=10_000, 10_00, 100_000, 1_000_000              	# Number of simulations for training (split into traiing
+n_sim_train=" 10_000, 10_000, 100_000, 1_000_000  "    # Number of simulations for training (split into traiing
 					# and testing set automatically). Comma-separated values
 					# indicate different numbers of sims for corresponding
 					# truncaitons. 
 					
-n_sim_coverage=10_000			# Number of simulations for coverage tests. 
+n_sim_coverage=" 10_000 "		# Number of simulations for coverage tests. 
 
-n_sim_explim=10_000                     # Number of simulations for expected limits
+n_sim_explim=" 1_000 "                # Number of simulations for expected limits
 
-n_prior_samples=1_000_000               # Number of prior samples to draw for posterior histograms
+n_prior_samples=" 400_000 "          # Number of prior samples to draw for posterior histograms
 
-partition_sim=normal			# Usually "normal", since simulation doesn't use GPUs. 
-devel_sim=0				# if yes, jobs run sooner, but max walltime is 2h. 
+partition_sim=" normal "		# Usually "normal", since simulation doesn't use GPUs. 
+devel_sim=" 0 "		 	# if yes, jobs run sooner, but max walltime is 2h. 
 
-n_jobs_sim=100			        # Number of jobs to share simulation over
-max_memory_sim=25			# Total memory per job, in GB, must be integer
-max_time_sim=01-00:00:00		# Max walltime per job ("dd-hh:mm:ss")  
+n_jobs_sim=" 100 "		        # Number of jobs to share simulation over
+max_memory_sim=" 25 "			# Total memory per job, in GB, must be integer
+max_time_sim=" 01-00:00:00 "		# Max walltime per job ("dd-hh:mm:ss")  
 
 # -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  - 
 # Training, inference and validation parameters
 
-use_old_net=0                         # Whether to load simulations from previous run on re-run (=1),
+use_old_net=" 0 "                     # Whether to load simulations from previous run on re-run (=1),
 				       # or start from scratch (=0).
-save_old_net=1                        # If 0, old net is deleted on re-run, rather than
+save_old_net=" 1 "                    # If 0, old net is deleted on re-run, rather than
 				       # archived, unless $use_old_net=1.
-train=1                               # Whether to train at all. 
-draw_DRP=0                            # Whether to dra samples for use during DRP-validation. 
+train=" 1 "                           # Whether to train at all. 
+draw_DRP=" 0 "                        # Whether to dra samples for use during DRP-validation. 
 
 
-architecture=$FOML3/analysis_scripts/ALP_sim/network_power.py           # Which architecture-defining 
+architecture=" $FOML3/analysis_scripts/ALP_sim/network_power.py "         # Which architecture-defining 
 									   # file to import.  
-restricted_posterior=0                 # 0: inference for 1- and 2-dimensional posteriors.
+restricted_posterior=" 0 "             # 0: inference for 1- and 2-dimensional posteriors.
                                        # 1: Only 1D posteriors. 2: Only 2D posteriors. 
 
-train_batch_size_1d=512 		# Batch size during training (for 1D and 2D posteriors) 
-max_epochs=3000  
+train_batch_size_1d=" 512 "		# Batch size during training (for 1D and 2D posteriors) 
+max_epochs=" 3000 "  
 
 
                                        # Hyperparameters for neural network (new ones can be defined
@@ -203,15 +203,15 @@ hyperparams=" 	--learning_rate (float) : 5e-3  \
 
 
 
-start_grid_test_at_count=0            # re-start a grid test at that grid point number
+start_grid_test_at_count=" 0 "         # re-start a grid test at that grid point number
 
 
-gpus=1					# Request GPU from cluster, yes or no
-partition_train=accel			# "normal", "accel" (if GPU), "accel_long" (GPU & time>1d)
-devel_train=0				# if yes, jobs run sooner, but max walltime is 2h.
+gpus=" 1 "   				# Request GPU from cluster, yes or no
+partition_train=" accel "  		# "normal", "accel" (if GPU), "accel_long" (GPU & time>1d)
+devel_train=" 0 "			# if yes, jobs run sooner, but max walltime is 2h.
 
-max_memory_train=50			# Total memory per job, in GB, must be integer
-max_time_train=00-04:30:00		# Max walltime ("dd-hh:mm:ss")
+max_memory_train=" 50 "		# Total memory per job, in GB, must be integer
+max_time_train=" 00-04:30:00 "	# Max walltime ("dd-hh:mm:ss")
 
 
                                       # under implementation

@@ -1,6 +1,6 @@
 #!/bin/bash
 
-sleep 86400
+#sleep 3600
 
 ./flare0_agnostic.sh
 
@@ -10,9 +10,11 @@ sleep 86400
 
 ./flare0_confident1.sh
 
+./flare0_confident3.sh
+
 ./flare0_confident2.sh
 
-./flare0_confident3.sh
+
 
 
 exit 0
