@@ -139,27 +139,30 @@ obs_seed=" 0 "			# Random seed for statistical fluctuations of mock observation
 
 n_truncations=" 0 "			# How many times to truncate the priors, and re-train
 					# the neural network. 
-use_old_truncations=" 0 "                 # Whether to remember previous truncations on re-run. 
-							  
+use_old_truncations=" 1 "              # Whether to remember previous truncations on re-run. 
+						  
+retrain_last_round=" 1 "                # If use_old_truncations=1 and all truncations are already
+                                        # finished, retrain_last_round=1 will rerun training
+                                        # for the last round
 
 # -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  - 
 # Simulation parameters	
 
 
-use_old_sims=" 0 "                    # Whether to load simulations from previous run on re-run (=1),
+use_old_sims=" 1 "                    # Whether to load simulations from previous run on re-run (=1),
 				       # or from a separate place (=path), or start from scratch (=0).
-save_old_sims=" 1 "		       # If 0, old simulations are deleted on re-run, rather than
+save_old_sims=" 0 "		       # If 0, old simulations are deleted on re-run, rather than
 				       # archived, unless $use_old_sims=1.
-simulate=" 1 "                        # Whether or not to simulate at all. 
+simulate=" 0 "                        # Whether or not to simulate at all. 
 
-n_sim_train=" 1_000_000"    # Number of simulations for training (split into traiing
+n_sim_train="1_000_000  "    # Number of simulations for training (split into traiing
 					# and testing set automatically). Comma-separated values
 					# indicate different numbers of sims for corresponding
 					# truncaitons. 
 					
 n_sim_coverage=" 0 "		# Number of simulations for coverage tests. 
 
-n_sim_explim=" 0 "                # Number of simulations for expected limits
+n_sim_explim=" 0 "                   # Number of simulations for expected limits
 
 n_prior_samples=" 0 "          # Number of prior samples to draw for posterior histograms
 
@@ -173,11 +176,14 @@ max_time_sim=" 01-00:00:00 "		# Max walltime per job ("dd-hh:mm:ss")
 # -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  - 
 # Training, inference and validation parameters
 
-use_old_net=" 0 "                     # Whether to load simulations from previous run on re-run (=1),
+use_old_net=" 1 "                     # Whether to load simulations from previous run on re-run (=1),
 				       # or start from scratch (=0).
+continue_training=" 0 "				       
+				       
 save_old_net=" 1 "                    # If 0, old net is deleted on re-run, rather than
 				       # archived, unless $use_old_net=1.
 train=" 1 "                           # Whether to train at all. 
+
 draw_DRP=" 0 "                        # Whether to dra samples for use during DRP-validation. 
 
 
@@ -213,6 +219,9 @@ devel_train=" 0 "			# if yes, jobs run sooner, but max walltime is 2h.
 max_memory_train=" 50 "		# Total memory per job, in GB, must be integer
 max_time_train=" 00-04:30:00 "	# Max walltime ("dd-hh:mm:ss")
 
+
+
+prediction_pairs="  (0,1)            "
 
                                       # under implementation
 DRP_coverage_parameters="      10000	 |   1000  |   0    |   1    |  5     ,\
@@ -273,6 +282,7 @@ $param11+$param12+$param13+$param14+$param15+$param16+$param17+$param18 ;\
 obs_seed=$obs_seed ;\
 n_truncations=$n_truncations=int ;\
 use_old_truncations=$use_old_truncations=int ;\
+retrain_last_round=$retrain_last_round=int ;\
 use_old_sims=$use_old_sims ;\
 save_old_sims=$save_old_sims=int ;\
 simulate=$simulate=int ;\
@@ -285,11 +295,13 @@ devel_sim=$devel_sim=int ;\
 n_jobs_sim=$n_jobs_sim=int ;\
 max_memory_sim=$max_memory_sim ;\
 max_time_sim=$max_time_sim ;\
-use_old_net=$use_old_net=int ;\
+use_old_net=$use_old_net ;\
+continue_training=$continue_training=int ;\
 save_old_net=$save_old_net=int ;\
 architecture=$architecture ;\
 restricted_posterior=$restricted_posterior=int ;\
 train=$train=int ;\
+prediction_pairs=$prediction_pairs ;\
 draw_DRP=$draw_DRP=int ;\
 train_batch_size_1d=$train_batch_size_1d=int ;\
 max_epochs=$max_epochs=int ;\

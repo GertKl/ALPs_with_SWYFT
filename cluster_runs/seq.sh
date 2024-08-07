@@ -1,8 +1,8 @@
 #!/bin/bash
 
-#sleep 3600
+sleep 8000
 
-./flare0_agnostic.sh
+#./flare0_agnostic.sh
 
 ./flare0_semi_informed.sh
 
