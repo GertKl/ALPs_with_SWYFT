@@ -2,7 +2,7 @@
 
 This pipeline implements statistical inference for gamma-ray astronomy, in particular ALP-searches. By using Neural Ratio Estimation, such analyses become computationally feasible without needing to reduce their complexity by applying overconfident constraints. This implementation has been developed with a focus on fluid re- configuration and execution of the analysis. This facilitates experimentation with, and scrutinization of, the application of NRE to our physics case.  
 
-NOTE: The framework is primarily developed for private use, so incompatibilities with different systems can occur. However, the main code usually runs well on linux if following the instructions below. 
+NOTE: The framework is primarily developed for private use, so incompatibilities can occur. However, the main code often runs well on bash if following the instructions below. 
 
 # Setup (Cloning from Git)
 
