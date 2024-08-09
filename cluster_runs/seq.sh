@@ -1,10 +1,10 @@
 #!/bin/bash
 
-sleep 8000
+#sleep 8000
 
 #./flare0_agnostic.sh
 
-./flare0_semi_informed.sh
+#./flare0_semi_informed.sh
 
 ./flare0_informed.sh
 
