@@ -7,6 +7,7 @@
 *.pickle*
 *_files/*
 */analysis_results/*
+*predictions-*
 
 
 */.ipynb_checkpoints/
