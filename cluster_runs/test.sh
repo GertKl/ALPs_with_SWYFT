@@ -33,7 +33,7 @@ analysis_scripts_location=$FOML3/analysis_scripts/ALP_sim  	# Location of /analy
 # -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  - 
 # Technical
 
-update_config=" 1 "          # Whether to update the configuration parameters on re-run or not. 
+update_config=" 0 "          # Whether to update the configuration parameters on re-run or not. 
 
 update_config_on_cluster=" 0 "   # Whether to update the configuration parameters using the cluster
 max_memory_config=" 5 "	  # queueing system (if $on_cluster=fox), or without. 
@@ -42,7 +42,7 @@ partition_config=" normal "
 qos_config=" devel "
 
 
-run_name="flare0_agnostic"       # Name of the series (of runs), identifying the results folder. If
+run_name="test"       # Name of the series (of runs), identifying the results folder. If
 			    # this isn't changed on re-run, results will be over-written, or
 			    # added to, depending on further configuration. 
 	
@@ -137,7 +137,7 @@ obs_seed=" 0 "			# Random seed for statistical fluctuations of mock observation
 #-----------------------------------------------------------------------------------------------
 
 
-n_truncations=" 3 "			# How many times to truncate the priors, and re-train
+n_truncations=" 0 "			# How many times to truncate the priors, and re-train
 					# the neural network. 
 use_old_truncations=" 1 "              # Whether to remember previous truncations on re-run. 
 						  
@@ -155,7 +155,7 @@ save_old_sims=" 0 "		       # If 0, old simulations are deleted on re-run, rathe
 				       # archived, unless $use_old_sims=1.
 simulate=" 0 "                        # Whether or not to simulate at all. 
 
-n_sim_train=" 10_000, 10_000, 100_000, 1_000_000  "    # Number of simulations for training (split into traiing
+n_sim_train=" 100 "    # Number of simulations for training (split into traiing
 					# and testing set automatically). Comma-separated values
 					# indicate different numbers of sims for corresponding
 					# truncaitons. 
