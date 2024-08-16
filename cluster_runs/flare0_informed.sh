@@ -141,7 +141,7 @@ n_truncations=" 3 "			# How many times to truncate the priors, and re-train
 					# the neural network. 
 use_old_truncations=" 1 "              # Whether to remember previous truncations on re-run. 
 						  
-retrain_last_round=" 1 "                # If use_old_truncations=1 and all truncations are already
+retrain_last_round=" 0 "                # If use_old_truncations=1 and all truncations are already
                                         # finished, retrain_last_round=1 will rerun training
                                         # for the last round
 
@@ -153,7 +153,7 @@ use_old_sims=" 1 "                    # Whether to load simulations from previou
 				       # or from a separate place (=path), or start from scratch (=0).
 save_old_sims=" 0 "		       # If 0, old simulations are deleted on re-run, rather than
 				       # archived, unless $use_old_sims=1.
-simulate=" 1 "                        # Whether or not to simulate at all. 
+simulate=" 0 "                        # Whether or not to simulate at all. 
 
 n_sim_train=" 10_000, 10_000, 100_000, 1_000_000  "    # Number of simulations for training (split into traiing
 					# and testing set automatically). Comma-separated values
@@ -182,9 +182,9 @@ continue_training=" 0 "
 				       
 save_old_net=" 1 "                    # If 0, old net is deleted on re-run, rather than
 				       # archived, unless $use_old_net=1.
-train=" 1 "                           # Whether to train at all. 
+train=" 0 "                           # Whether to train at all. 
 
-draw_DRP=" 0 "                        # Whether to dra samples for use during DRP-validation. 
+draw_DRP=" 1 "                        # Whether to dra samples for use during DRP-validation. 
 
 
 architecture=" $FOML3/analysis_scripts/ALP_sim/network_power.py "         # Which architecture-defining 
@@ -224,8 +224,7 @@ max_time_train=" 00-04:30:00 "	# Max walltime ("dd-hh:mm:ss")
 prediction_pairs="  (0,1)            "
 
                                       # under implementation
-DRP_coverage_parameters="      10000	 |   1000  |   0    |   1    |  5     ,\
-				  2	 |    1    |  100   |   1    |  1	 "
+DRP_coverage_parameters="      10_000	,   1000  ,   0    ,   1    ,  5     "
 
 
 

@@ -139,7 +139,7 @@ obs_seed=" 0 "			# Random seed for statistical fluctuations of mock observation
 
 n_truncations=" 0 "			# How many times to truncate the priors, and re-train
 					# the neural network. 
-use_old_truncations=" 1 "              # Whether to remember previous truncations on re-run. 
+use_old_truncations=" 0 "              # Whether to remember previous truncations on re-run. 
 						  
 retrain_last_round=" 1 "                # If use_old_truncations=1 and all truncations are already
                                         # finished, retrain_last_round=1 will rerun training
@@ -153,7 +153,7 @@ use_old_sims=" 1 "                    # Whether to load simulations from previou
 				       # or from a separate place (=path), or start from scratch (=0).
 save_old_sims=" 0 "		       # If 0, old simulations are deleted on re-run, rather than
 				       # archived, unless $use_old_sims=1.
-simulate=" 1 "                        # Whether or not to simulate at all. 
+simulate=" 0 "                        # Whether or not to simulate at all. 
 
 n_sim_train="1_000_000  "    # Number of simulations for training (split into traiing
 					# and testing set automatically). Comma-separated values
@@ -164,7 +164,7 @@ n_sim_coverage=" 0 "		# Number of simulations for coverage tests.
 
 n_sim_explim=" 0 "                   # Number of simulations for expected limits
 
-n_prior_samples=" 0 "          # Number of prior samples to draw for posterior histograms
+n_prior_samples=" 400_000 "          # Number of prior samples to draw for posterior histograms
 
 partition_sim=" normal "		# Usually "normal", since simulation doesn't use GPUs. 
 devel_sim=" 0 "		 	# if yes, jobs run sooner, but max walltime is 2h. 
