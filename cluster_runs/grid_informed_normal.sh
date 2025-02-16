@@ -42,7 +42,7 @@ partition_config=" normal "
 qos_config=" devel "
 
 
-run_name="grid_informed_normal"       # Name of the series (of runs), identifying the results folder. If
+run_name="grid_informed_normal2"       # Name of the series (of runs), identifying the results folder. If
 			    # this isn't changed on re-run, results will be over-written, or
 			    # added to, depending on further configuration. 
 	
@@ -141,7 +141,7 @@ n_truncations=" 0 "			# How many times to truncate the priors, and re-train
 					# the neural network. 
 use_old_truncations=" 1 "              # Whether to remember previous truncations on re-run. 
 						  
-retrain_last_round=" 0 "                # If use_old_truncations=1 and all truncations are already
+retrain_last_round=" 1 "                # If use_old_truncations=1 and all truncations are already
                                         # finished, retrain_last_round=1 will rerun training
                                         # for the last round
 
@@ -153,7 +153,7 @@ use_old_sims=" /home/gertwk/ALPs_with_SWYFT/cluster_runs/analysis_results/flare0
 				       # or from a separate place (=path), or start from scratch (=0).
 save_old_sims=" 0 "		       # If 0, old simulations are deleted on re-run, rather than
 				       # archived, unless $use_old_sims=1.
-simulate=" 0 "                        # Whether or not to simulate at all. 
+simulate=" 1 "                        # Whether or not to simulate at all. 
 
 n_sim_train=" 1_000_000  "    # Number of simulations for training (split into traiing
 					# and testing set automatically). Comma-separated values
@@ -162,7 +162,7 @@ n_sim_train=" 1_000_000  "    # Number of simulations for training (split into t
 					
 n_sim_coverage=" 10_000 "		# Number of simulations for coverage tests. 
 
-n_sim_explim=" 1_000 "                   # Number of simulations for expected limits
+n_sim_explim=" 0 "                   # Number of simulations for expected limits
 
 n_prior_samples=" 400_000 "          # Number of prior samples to draw for posterior histograms
 
@@ -176,7 +176,7 @@ max_time_sim=" 01-00:00:00 "		# Max walltime per job ("dd-hh:mm:ss")
 # -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  - 
 # Training, inference and validation parameters
 
-use_old_net=" 1 "                     # Whether to load simulations from previous run on re-run (=1),
+use_old_net=" 0 "                     # Whether to load simulations from previous run on re-run (=1),
 				       # or start from scratch (=0).
 continue_training=" 0 "				       
 				       
@@ -199,9 +199,9 @@ max_epochs=" 3000 "
                                        # Hyperparameters for neural network (new ones can be defined
                                        # analogously). Comma-separated variables imply grid-testing. 
 hyperparams=" 	--stopping_patience (int): 30   \
-		--blocks (int): 2,3		 \
-		--features (int): 32,64,128 	 \
-		--dropout (float): 0,0.1	 \
+		--blocks (int): 2		 \
+		--features (int): 32 	 \
+		--dropout (float): 0,0.1,0.2,0.3	 \
 		--learning_rate (float) : 5e-4,5e-3  \
 "	
 

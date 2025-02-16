@@ -5,17 +5,9 @@ trap "" SIGTERM
 
 #sleep $((21*60*60))
 
-#./flare0_agnostic.sh
+./grid_informed_power.sh
 
-#./flare0_semi_informed.sh
-
-#./flare0_informed.sh
-
-./flare0_confident1.sh
-
-./flare0_confident3.sh
-
-./flare0_confident2.sh
+./grid_informed_normal.sh
 
 
 

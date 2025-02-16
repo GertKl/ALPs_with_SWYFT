@@ -42,7 +42,7 @@ partition_config=" normal "
 qos_config=" devel "
 
 
-run_name="grid_informed_power"       # Name of the series (of runs), identifying the results folder. If
+run_name="grid_informed_power5"       # Name of the series (of runs), identifying the results folder. If
 			    # this isn't changed on re-run, results will be over-written, or
 			    # added to, depending on further configuration. 
 	
@@ -139,9 +139,9 @@ obs_seed=" 0 "			# Random seed for statistical fluctuations of mock observation
 
 n_truncations=" 0 "			# How many times to truncate the priors, and re-train
 					# the neural network. 
-use_old_truncations=" 1 "              # Whether to remember previous truncations on re-run. 
+use_old_truncations=" 0 "              # Whether to remember previous truncations on re-run. 
 						  
-retrain_last_round=" 0 "                # If use_old_truncations=1 and all truncations are already
+retrain_last_round=" 1 "                # If use_old_truncations=1 and all truncations are already
                                         # finished, retrain_last_round=1 will rerun training
                                         # for the last round
 
@@ -149,11 +149,11 @@ retrain_last_round=" 0 "                # If use_old_truncations=1 and all trunc
 # Simulation parameters	
 
 
-use_old_sims=" /home/gert/hepp02/ALPs_with_SWYFT/cluster_runs/analysis_results/flare0_informed/sim_output/store/store_round_3_gridpoint_0 "                    # Whether to load simulations from previous run on re-run (=1),
+use_old_sims=" /home/gertwk/ALPs_with_SWYFT/cluster_runs/analysis_results/flare0_informed/sim_output/store/store_round_3_gridpoint_0 "                    # Whether to load simulations from previous run on re-run (=1),
 				       # or from a separate place (=path), or start from scratch (=0).
 save_old_sims=" 0 "		       # If 0, old simulations are deleted on re-run, rather than
 				       # archived, unless $use_old_sims=1.
-simulate=" 0 "                        # Whether or not to simulate at all. 
+simulate=" 1 "                        # Whether or not to simulate at all. 
 
 n_sim_train=" 1_000_000  "    # Number of simulations for training (split into traiing
 					# and testing set automatically). Comma-separated values
@@ -162,7 +162,7 @@ n_sim_train=" 1_000_000  "    # Number of simulations for training (split into t
 					
 n_sim_coverage=" 10_000 "		# Number of simulations for coverage tests. 
 
-n_sim_explim=" 1_000 "                   # Number of simulations for expected limits
+n_sim_explim=" 0 "                   # Number of simulations for expected limits
 
 n_prior_samples=" 400_000 "          # Number of prior samples to draw for posterior histograms
 
@@ -176,15 +176,15 @@ max_time_sim=" 01-00:00:00 "		# Max walltime per job ("dd-hh:mm:ss")
 # -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  - 
 # Training, inference and validation parameters
 
-use_old_net=" 1 "                     # Whether to load simulations from previous run on re-run (=1),
+use_old_net=" 0 "                     # Whether to load simulations from previous run on re-run (=1),
 				       # or start from scratch (=0).
 continue_training=" 0 "				       
 				       
 save_old_net=" 1 "                    # If 0, old net is deleted on re-run, rather than
 				       # archived, unless $use_old_net=1.
-train=" 0 "                           # Whether to train at all. 
+train=" 1 "                           # Whether to train at all. 
 
-draw_DRP=" 1 "                        # Whether to dra samples for use during DRP-validation. 
+draw_DRP=" 0 "                        # Whether to dra samples for use during DRP-validation. 
 
 
 architecture=" $FOML3/analysis_scripts/ALP_sim/network_power.py "         # Which architecture-defining 
@@ -198,18 +198,22 @@ max_epochs=" 3000 "
 
                                        # Hyperparameters for neural network (new ones can be defined
                                        # analogously). Comma-separated variables imply grid-testing. 
-hyperparams=" 	--learning_rate (float) : 5e-4,5e-3  \
-		--stopping_patience (int): 30   \
+hyperparams=" 	--stopping_patience (int): 30   \
 		--blocks (int): 2		 \
-		--features (int): 128 	 \
-		--dropout (float): 0	 \
-		--data_features (int): 32,64  \
-		--power_features (int): 4,8  \
+		--features (int): 32	        \
+		--learning_rate (float) : 5e-4  \
+		--dropout (float): 0, 0.2	 \
+		--data_width (int): 128,64,32  \
+		--data_features (int): 32,16,8  \
+		--power_width (int): 256,128,64  \
+		--power_features (int): 32,16,8  \
+		
+		
 "	
 
 
 
-start_grid_test_at_count=" 0 "         # re-start a grid test at that grid point number
+start_grid_test_at_count=" 46 "         # re-start a grid test at that grid point number
 
 
 gpus=" 1 "   				# Request GPU from cluster, yes or no
