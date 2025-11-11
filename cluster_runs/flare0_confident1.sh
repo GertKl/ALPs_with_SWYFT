@@ -153,7 +153,7 @@ use_old_sims=" 1 "                    # Whether to load simulations from previou
 				       # or from a separate place (=path), or start from scratch (=0).
 save_old_sims=" 0 "		       # If 0, old simulations are deleted on re-run, rather than
 				       # archived, unless $use_old_sims=1.
-simulate=" 1 "                        # Whether or not to simulate at all. 
+simulate=" 0 "                        # Whether or not to simulate at all. 
 
 n_sim_train=" 10_000, 10_000, 100_000, 1_000_000  "    # Number of simulations for training (split into traiing
 					# and testing set automatically). Comma-separated values
@@ -221,7 +221,7 @@ max_time_train=" 00-04:30:00 "	# Max walltime ("dd-hh:mm:ss")
 
 
 
-prediction_pairs="  (0,1)            "
+prediction_pairs="  (0,1),(2,3),(2,4),(3,4)             "
 
                                       # under implementation
 DRP_coverage_parameters="      10000	 |   1000  |   0    |   1    |  5     ,\

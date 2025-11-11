@@ -182,7 +182,7 @@ continue_training=" 0 "
 				       
 save_old_net=" 1 "                    # If 0, old net is deleted on re-run, rather than
 				       # archived, unless $use_old_net=1.
-train=" 0 "                           # Whether to train at all. 
+train=" 1 "                           # Whether to train at all. 
 
 draw_DRP=" 0 "                        # Whether to dra samples for use during DRP-validation. 
 
@@ -203,7 +203,9 @@ hyperparams=" 	--learning_rate (float) : 5e-3  \
 		--blocks (int): 2		 \
 		--features (int): 128 	 \
 		--dropout (float): 0.1	 \
+		--data_width (int): 64 \
 		--data_features (int): 64  \
+		--power_width (int): 64 \
 		--power_features (int): 4  \
 "	
 
@@ -221,7 +223,7 @@ max_time_train=" 00-04:30:00 "	# Max walltime ("dd-hh:mm:ss")
 
 
 
-prediction_pairs="  (0,1)            "
+prediction_pairs="  (0,1),(2,3),(2,4),(3,4)       "
 
                                       # under implementation
 DRP_coverage_parameters="      10000	 |   1000  |   0    |   1    |  5     ,\

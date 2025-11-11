@@ -42,7 +42,7 @@ partition_config=normal
 qos_config="devel"
 
 
-run_name="test2"       # Name of the series (of runs), identifying the results folder. If
+run_name="demo"       # Name of the series (of runs), identifying the results folder. If
 			    # this isn't changed on re-run, results will be over-written, or
 			    # added to, depending on further configuration. 
 	
@@ -152,7 +152,7 @@ save_old_sims=0		       # If 0, old simulations are deleted on re-run, rather th
 				       # archived, unless $use_old_sims=1.
 simulate=1                            # Whether or not to simulate at all. 
 
-n_sim_train=10_000, 10_00, 100_000, 1_000_000              	# Number of simulations for training (split into traiing
+n_sim_train=10_000,10_00,100_000,1_000_000              	# Number of simulations for training (split into traiing
 					# and testing set automatically). Comma-separated values
 					# indicate different numbers of sims for corresponding
 					# truncaitons. 

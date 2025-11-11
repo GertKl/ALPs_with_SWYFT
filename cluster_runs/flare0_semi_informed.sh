@@ -111,7 +111,6 @@ param3=" [-10.2,-8.0]  | -8.812 | -8.812 | 1 | U               | Amplitude   |  
 param4=" [0,4]         | 2.11   | 2.11   | 0 | U               | index       |              " # Spectral index of the PWL 
 param5=" 300           | 300    | 300    | 0 | U               | E0          |              " # Reference energy (?) E0, In GeV
 param6=" [1 , 4]       | 2.75   | 2.75   | 1 | U               | Ecut        |              " # Cut-off energy Ecut, in GeV 
-
 param7=" [3.8,165]     | 25     | 25     | 0 | U               | rms_B       |              " # rms of B field, default = 10.
 param8=" [34,61]       | 46     | 46     | 0 | U               | e_norm      |              " # normalization of electron density, default = 39.
 param9=" [2.7,6.4]     | 4.05   | 4.05   | 0 | U               | e_norm_2    |              " # second normalization of electron density, see Churazov et al. 2003, Eq. 4, default = 4.05
@@ -153,7 +152,7 @@ use_old_sims=" 1 "                    # Whether to load simulations from previou
 				       # or from a separate place (=path), or start from scratch (=0).
 save_old_sims=" 0 "		       # If 0, old simulations are deleted on re-run, rather than
 				       # archived, unless $use_old_sims=1.
-simulate=" 1 "                        # Whether or not to simulate at all. 
+simulate=" 0 "                        # Whether or not to simulate at all. 
 
 n_sim_train=" 10_000, 10_000, 100_000, 1_000_000  "    # Number of simulations for training (split into traiing
 					# and testing set automatically). Comma-separated values
@@ -203,7 +202,9 @@ hyperparams=" 	--learning_rate (float) : 5e-3  \
 		--blocks (int): 2		 \
 		--features (int): 128 	 \
 		--dropout (float): 0.1	 \
+		--data_width (int): 64 \
 		--data_features (int): 64  \
+		--power_width (int): 64 \
 		--power_features (int): 4  \
 "	
 
@@ -221,7 +222,7 @@ max_time_train=" 00-04:30:00 "	# Max walltime ("dd-hh:mm:ss")
 
 
 
-prediction_pairs="  (0,1)            "
+prediction_pairs=" (0,1),(2,3),(2,4),(3,4)         "
 
                                       # under implementation
 DRP_coverage_parameters="      10000	 |   1000  |   0    |   1    |  5     ,\
